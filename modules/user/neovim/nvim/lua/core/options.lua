@@ -5,7 +5,7 @@ opt.relativenumber = true
 opt.number = true
 
 opt.ruler = true
-opt.smartindent = false
+opt.smartindent = true
 
 -- search setting
 opt.ignorecase = true

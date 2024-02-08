@@ -2,21 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, inputs, ... }:
-let
-  systemAppPath = "modules/system";
-  keyremap = "keyd";
-  wm = "hyprland";
-  shell = "zsh";
-in
+{ config, pkgs, inputs, args, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../${systemAppPath}/${keyremap}/${keyremap}.nix
-      ../../${systemAppPath}/${wm}/${wm}.nix
-      ../../${systemAppPath}/${shell}/${shell}.nix
-      ../../${systemAppPath}/fonts/fonts.nix
+      ../../${args.systemAppPath}/${args.keyremap}/${args.keyremap}.nix
+      ../../${args.systemAppPath}/${args.wm}/${args.wm}.nix
+      ../../${args.systemAppPath}/${args.shell}/${args.shell}.nix
+      ../../${args.systemAppPath}/${args.browser}/${args.browser}.nix
+      ../../${args.systemAppPath}/fonts/fonts.nix
     ];
 
   # Allow unfree

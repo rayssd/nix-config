@@ -1,20 +1,13 @@
-{ config, pkgs, ... }:
-let
-  userAppsPath = "modules/user";
-  systemAppsPath = "modules/system";
-  terminal = "alacritty";
-  editor = "neovim";
-  shell = "zsh";
-  wm = "hyprland";
-in
+{ config, pkgs, args, ... }:
 {
   imports = [
-    ../../${userAppsPath}/${terminal}/${terminal}.nix
-    ../../${userAppsPath}/${editor}/${editor}.nix
-    ../../${userAppsPath}/${shell}/${shell}.nix
-    ../../${userAppsPath}/${wm}/${wm}.nix
-    ../../${userAppsPath}/tmux/tmux.nix
-    ../../${userAppsPath}/mtools/mtools.nix
+    ../../${args.userAppsPath}/${args.terminal}/${args.terminal}.nix
+    ../../${args.userAppsPath}/${args.editor}/${args.editor}.nix
+    ../../${args.userAppsPath}/${args.shell}/${args.shell}.nix
+    ../../${args.userAppsPath}/${args.wm}/${args.wm}.nix
+    ../../${args.userAppsPath}/${args.browser}/${args.browser}.nix
+    ../../${args.userAppsPath}/tmux/tmux.nix
+    ../../${args.userAppsPath}/mtools/mtools.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -87,14 +80,5 @@ in
     #   toLua = str: "lua << EOF\n${str}\nEOF\n";
     #   toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
 
-      firefox = {
-        enable = true;
-        profiles.default = {
-          userChrome = builtins.readFile ../../${userAppsPath}/firefox/userChrome.css;
-          settings = {
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          };
-        };
-      };
   };
 }
