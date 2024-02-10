@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../waybar/waybar.nix
+    ../rofi/rofi.nix
+  ];
+
   home.packages = with pkgs; [
     wl-clipboard-rs
     waybar
@@ -106,7 +111,7 @@
         "$mainMod, M, exit, "
         "$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating, "
-        "$mainMod, Space, exec, rofi -show drun -show-icons"
+        "ALT, Space, exec, rofi -show drun -show-icons"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, J, togglesplit," # dwindle
 

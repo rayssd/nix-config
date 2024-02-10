@@ -4,36 +4,36 @@
   programs.tmux = {
     enable = true;
     extraConfig = ''
-# remap prefix from 'C-b' to 'C-n'
+      # remap prefix from 'C-b' to 'C-n'
       unbind C-b
       set-option -g prefix C-n
       bind-key C-n send-prefix
 
-# set vi mode keys
+      # set vi mode keys
       setw -g mode-keys vi
       bind -T copy-mode-vi v send -X begin-selection
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
 
-# Stay in copy mode on drag end.
-# (Would use `bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X
-# stop-selection` but it is a bit glitchy.)
-# unbind-key -T copy-mode-vi MouseDragEnd1Pane
+      # Stay in copy mode on drag end.
+      # (Would use `bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X
+      # stop-selection` but it is a bit glitchy.)
+      # unbind-key -T copy-mode-vi MouseDragEnd1Pane
       bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-no-clear pbcopy
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-no-clear pbcopy
 
-# Start windows and panes at 1, instead of 0
+      # Start windows and panes at 1, instead of 0
       set -g base-index 1
       setw -g pane-base-index 1
 
-# Automatically reorder
+      # Automatically reorder
       set -g renumber-windows on
 
 
-# Swap window
-# bind-key -n C-S-Left swap-window -t -1 \; previous-window
-# bind-key -n C-S-Right swap-window -t +1 \; next-window
+      # Swap window
+      # bind-key -n C-S-Left swap-window -t -1 \; previous-window
+      # bind-key -n C-S-Right swap-window -t +1 \; next-window
 
-# Moving window
+      # Moving window
       bind-key -n 'C-S-Tab' select-window -t :-
       bind-key -n 'C-Tab' select-window -t :+
       bind-key -n C-0 select-window -t :0
@@ -47,23 +47,23 @@
       bind-key -n C-8 select-window -t :8
       bind-key -n C-9 select-window -t :9
 
-# Mouse scrolling
-      set -g mouse on 
+      # Mouse scrolling
+      set -g mouse on
 
-# zsh prompt
+      # zsh prompt
       set -g default-terminal "xterm-256color"
-# set -ag terminal-features ",xterm-256color:RGB"
+      # set -ag terminal-features ",xterm-256color:RGB"
       set -ag terminal-overrides ",alacritty:RGB"
-# set-option -gw xterm-keys on
+      # set-option -gw xterm-keys on
 
-# recommended by nvim :checkhealth
+      # recommended by nvim :checkhealth
       set-option -sg escape-time 10
 
-# scrollback buffer size
+      # scrollback buffer size
       set-option -g history-limit 50000
 
 
-# reload conf
+      # reload conf
       bind r source-file ~/.config/tmux/tmux.conf \; display ".tmux.conf reloaded!"
 
       set -g status 'on'
@@ -77,9 +77,10 @@
       set -g pane-border-style fg='colour238'
       set -g pane-active-border-style fg='colour154'
       setw -g window-status-activity-style fg='colour154',bg='colour235',none
-      setw -g window-status-separator \'\'
+      setw -g window-status-separator ""
       setw -g window-status-style fg='colour121',bg='colour235',none
-# set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami)  #(uptime  | cut -d " " -f 1,2,3) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
+
+      # set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami)  #(uptime  | cut -d " " -f 1,2,3) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
        set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
 # set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] %r  %a  %Y #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour154] #(rainbarf --battery --remaining --no-rgb) '
       set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour154] '
@@ -87,9 +88,9 @@
       setw -g window-status-current-format '#[fg=colour235,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I  #W  #F #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]'
 
 
-# vim-tmux-navigator
-# Smart pane switching with awareness of Vim splits.
-# See: https://github.com/christoomey/vim-tmux-navigator
+      # vim-tmux-navigator
+      # Smart pane switching with awareness of Vim splits.
+      # See: https://github.com/christoomey/vim-tmux-navigator
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
           | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
       bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'

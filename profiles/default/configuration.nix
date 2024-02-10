@@ -12,6 +12,7 @@
       ../../${args.systemAppPath}/${args.shell}/${args.shell}.nix
       ../../${args.systemAppPath}/${args.browser}/${args.browser}.nix
       ../../${args.systemAppPath}/fonts/fonts.nix
+#      ../../${args.systemAppPath}/tnative/tnative.nix
     ];
 
   # Allow unfree
@@ -94,14 +95,15 @@
   environment = {
     systemPackages = with pkgs; [
       alacritty
-      broot
       btop
       cmake
       distrobox
       dolphin
-      firefox
+      eza
+      exercism
       flameshot
       fontconfig
+      fzf
       gh
       git
       home-manager
@@ -112,10 +114,8 @@
       ripgrep
       tldr
       unzip
-      vim
       wireplumber
       wget
-      wl-clipboard
       zoom-us
 
       # Language Servers

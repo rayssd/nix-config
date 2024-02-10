@@ -8,6 +8,8 @@
     ../../${args.userAppsPath}/${args.browser}/${args.browser}.nix
     ../../${args.userAppsPath}/tmux/tmux.nix
     ../../${args.userAppsPath}/mtools/mtools.nix
+    ../../${args.userAppsPath}/fzf/fzf.nix
+    ../../${args.userAppsPath}/tridactyl-native/tridactyl-native.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

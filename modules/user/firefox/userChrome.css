@@ -8,7 +8,7 @@
    */
   :root {
     --custom-sidebar-collapsed-width: 35px;
-    --custom-sidebar-full-width: 10vw;
+    --custom-sidebar-full-width: 25vw;
     --custom-sidebar-border: 0px solid #404040;
   }
 
