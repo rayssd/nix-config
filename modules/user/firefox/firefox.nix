@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  imports = [ ../tridactyl-native/tridactyl-native.nix ];
   programs.firefox = {
     enable = true;
     profiles.default = {

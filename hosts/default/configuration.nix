@@ -2,7 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, inputs, args, ... }:
+{ config, pkgs, inputs, ... }:
+let
+  args = {
+    userAppsPath = "modules/user";
+    systemAppPath = "modules/system";
+    username = "loki";
+    shell = "zsh";
+    wm = "hyprland";
+    browser = "firefox";
+    keyremap = "keyd";
+  };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -12,7 +23,6 @@
       ../../${args.systemAppPath}/${args.shell}/${args.shell}.nix
       ../../${args.systemAppPath}/${args.browser}/${args.browser}.nix
       ../../${args.systemAppPath}/fonts/fonts.nix
-#      ../../${args.systemAppPath}/tnative/tnative.nix
     ];
 
   # Allow unfree
@@ -72,7 +82,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.loki = {
+  users.users.${args.username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "kvm" ]; # Enable ‘sudo’ for the user.
   #  packages = with pkgs; [
@@ -94,7 +104,6 @@
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      alacritty
       btop
       cmake
       distrobox
@@ -103,7 +112,6 @@
       exercism
       flameshot
       fontconfig
-      fzf
       gh
       git
       home-manager

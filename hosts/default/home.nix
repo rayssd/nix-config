@@ -1,4 +1,19 @@
-{ config, pkgs, args, ... }:
+{ config, pkgs, ... }:
+let
+  args = {
+    userAppsPath = "modules/user";
+    systemAppPath = "modules/system";
+    username = "loki";
+    terminal = "alacritty";
+    editor = "neovim";
+    shell = "zsh";
+    wm = "hyprland";
+    browser = "firefox";
+    keyremap = "keyd";
+    multiplexer = "tmux";
+    fuzzyFinder = "fzf";
+  };
+in
 {
   imports = [
     ../../${args.userAppsPath}/${args.terminal}/${args.terminal}.nix
@@ -6,15 +21,16 @@
     ../../${args.userAppsPath}/${args.shell}/${args.shell}.nix
     ../../${args.userAppsPath}/${args.wm}/${args.wm}.nix
     ../../${args.userAppsPath}/${args.browser}/${args.browser}.nix
-    ../../${args.userAppsPath}/tmux/tmux.nix
-    ../../${args.userAppsPath}/mtools/mtools.nix
-    ../../${args.userAppsPath}/fzf/fzf.nix
-    ../../${args.userAppsPath}/tridactyl-native/tridactyl-native.nix
+    ../../${args.userAppsPath}/${args.multiplexer}/${args.multiplexer}.nix
+    #../../${args.userAppsPath}/mtools/mtools.nix
+    ../../${args.userAppsPath}/${args.fuzzyFinder}/${args.fuzzyFinder}.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "loki";
-  home.homeDirectory = "/home/loki";
+  home = {
+    username = args.username;
+    homeDirectory = "/home/${args.username}";
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

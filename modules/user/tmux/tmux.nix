@@ -3,14 +3,15 @@
 {
   programs.tmux = {
     enable = true;
+    prefix = "C-b";
+    keyMode = "vi";
+    terminal = "xterm-256color";
+    baseIndex = 1;
+    escapeTime = 10;
+    historyLimit = 50000;
+    mouse = true;
     extraConfig = ''
-      # remap prefix from 'C-b' to 'C-n'
-      unbind C-b
-      set-option -g prefix C-n
-      bind-key C-n send-prefix
 
-      # set vi mode keys
-      setw -g mode-keys vi
       bind -T copy-mode-vi v send -X begin-selection
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
 
@@ -21,13 +22,8 @@
       bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-no-clear pbcopy
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-no-clear pbcopy
 
-      # Start windows and panes at 1, instead of 0
-      set -g base-index 1
-      setw -g pane-base-index 1
-
       # Automatically reorder
       set -g renumber-windows on
-
 
       # Swap window
       # bind-key -n C-S-Left swap-window -t -1 \; previous-window
@@ -47,21 +43,8 @@
       bind-key -n C-8 select-window -t :8
       bind-key -n C-9 select-window -t :9
 
-      # Mouse scrolling
-      set -g mouse on
-
       # zsh prompt
-      set -g default-terminal "xterm-256color"
-      # set -ag terminal-features ",xterm-256color:RGB"
       set -ag terminal-overrides ",alacritty:RGB"
-      # set-option -gw xterm-keys on
-
-      # recommended by nvim :checkhealth
-      set-option -sg escape-time 10
-
-      # scrollback buffer size
-      set-option -g history-limit 50000
-
 
       # reload conf
       bind r source-file ~/.config/tmux/tmux.conf \; display ".tmux.conf reloaded!"
