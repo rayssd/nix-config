@@ -6,7 +6,7 @@
     settings = {
       env.TERM = "alacritty";
       font = {
-        size = 12;
+        size = 18;
         normal.family = "FiraCode Nerd Font";
       };
       window = {

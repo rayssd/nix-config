@@ -1,17 +1,22 @@
 { pkgs, ... }:
 {
-  environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
     enable = true;
-    histSize = 10000000;
-    setOptions = [
-      # preserve zsh history across tmux windows
-      "inc_append_history"
-      "share_history"
-      # ignore duplicate commands
-      "hist_save_no_dups"
-    ];
+    # not available in nix-darwin
+
+    # histSize = 10000000; 
+    # setOptions = [
+    #   # preserve zsh history across tmux windows
+    #   "inc_append_history"
+    #   "share_history"
+    #   # ignore duplicate commands
+    #   "hist_save_no_dups"
+    # ];
+
+    # not available in nix-darwn
+    # enableFzfHistory = true;
+    # enableFzfCompletion = true;
+
     promptInit = ''
       if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
         [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}

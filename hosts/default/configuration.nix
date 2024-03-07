@@ -25,6 +25,9 @@ in
       ../../${args.systemAppPath}/fonts/fonts.nix
     ];
 
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+
   # Allow unfree
   nixpkgs.config.allowUnfree = true;
 

@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 let
   myAliases = {
-    nrs = "sudo nixos-rebuild switch --flake ~/nixos-config/#default";
-    hms = "home-manager switch --flake ~/nixos-config/#loki";
+    nrs = "sudo nixos-rebuild switch --flake ~/nix-config/#default";
+    drs = "sudo darwin-rebuild switch --flake ~/nix-config/#intelMac";
+    hmsl = "home-manager switch --flake ~/nix-config/#loki";
+    hmsr = "home-manager switch --flake ~/nix-config/#ray";
     ll = "exa -lh --color=always --group-directories-first";
   };
 in
@@ -10,8 +12,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
+    # syntaxHighlighting.enable = true;
     shellAliases = myAliases;
     plugins = [
       {
@@ -20,12 +21,15 @@ in
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
+    # completionInit = "autoload -U compinit && compinit -u";
     initExtra = ''
+      # preserves zsh command history across tmux windows
+      setopt inc_append_history
+      setopt share_history
 
-      if [[ $+commands[fzf-share] == 1 ]]; then
-        source "$(fzf-share)/key-bindings.zsh"
-        source "$(fzf-share)/completion.zsh"
-      fi
+      # ignore duplicate commands
+      setopt hist_save_no_dups
+
 
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
@@ -45,7 +49,13 @@ in
       bindkey -M viins '^[[1;5C' emacs-forward-word
       bindkey -M viins '^[[1;5D' emacs-backward-word
 
+      HISTSIZE=10000000
       SAVEHIST=10000000
+
+      if [[ $+commands[fzf-share] == 1 ]]; then
+        source "$(fzf-share)/key-bindings.zsh"
+        source "$(fzf-share)/completion.zsh"
+      fi
       '';
   };
 }
