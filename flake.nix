@@ -14,13 +14,38 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcasks = {
+      url = "github:jacekszymanski/nixcasks";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
 
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
     let
-      x86system = "x86_64-linux";
-      x86pkgs = nixpkgs.legacyPackages.${x86system};
+      x86Linux = "x86_64-linux";
+      x86pkgs = nixpkgs.legacyPackages.${x86Linux};
+      x86Darwin = "x86_64-darwin";
+      ARMDarwin = "aarch64-darwin";
+      MacOSVersion = "ventura";
     in
     {
       nixosConfigurations = {
@@ -36,12 +61,26 @@
       };
 
       darwinConfigurations = {
+        system = x86Darwin;
         "intelMac" = nix-darwin.lib.darwinSystem {
-          # system = "x86_64-darwin";
-          # pkgs =
-          specialArgs = { inherit inputs; };
+          specialArgs = rec { 
+            inherit inputs; 
+            nixcasks = import inputs.nixcasks {
+              inherit pkgs nixpkgs;
+              osVersion = MacOSVersion;
+            };
+            pkgs = import nixpkgs {
+              system = x86Darwin;
+              config.allowUnfree = true;
+              config.packageOverrides = prev: {
+                inherit nixcasks;
+              };
+              # nixcasks = inputs.nixcasks.legacyPackages."${x86Darwin}";
+            };
+          };
           modules = [
             ./hosts/intelMac/configuration.nix
+
             home-manager.darwinModules.home-manager
             {
               home-manager = {
@@ -50,6 +89,21 @@
                 # addd custom flake below, inherit <custom-flake>
                 extraSpecialArgs = { };
                 users."ray".imports = [ ./hosts/intelMac/home.nix ];
+              };
+            }
+
+            inputs.nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                user = "ray";
+                enable = true;
+                taps = {
+                  "homebrew/homebrew-core" = inputs.homebrew-core;
+                  "homebrew/homebrew-cask" = inputs.homebrew-cask;
+                  "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+                };
+                mutableTaps = false;
+                autoMigrate = true;
               };
             }
           ];

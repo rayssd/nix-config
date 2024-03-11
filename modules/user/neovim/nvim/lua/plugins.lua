@@ -70,13 +70,20 @@ return {
   "vim-scripts/Highlight-UnMatched-Brackets",
 
   -- file explorer
-  { "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    cmd = "NvimTreeToggle",
+  -- { "nvim-tree/nvim-tree.lua",
+  --   dependencies = {
+  --     'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  --   },
+  --   cmd = "NvimTreeToggle",
+  --   config = function()
+  --     require("lazy-configs.nvim-tree")
+  --   end
+  -- },
+
+  { 'echasnovski/mini.nvim',
+    version = '*',
     config = function()
-      require("lazy-configs.nvim-tree")
+      require("lazy-configs.mini")
     end
   },
 

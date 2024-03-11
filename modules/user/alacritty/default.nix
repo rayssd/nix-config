@@ -10,10 +10,11 @@
         normal.family = "FiraCode Nerd Font";
       };
       window = {
+        decorations = "Buttonless";
         dynamic_title = true;
         opacity = 0.8;
-        padding.x = 10;
-        padding.y = 10;
+        padding.x = 15;
+        padding.y = 15;
       };
       keyboard = {
         bindings = [

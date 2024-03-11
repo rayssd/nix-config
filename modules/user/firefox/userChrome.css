@@ -6,11 +6,7 @@
   /* To bring back OS title bar with min/max/close buttons, some users might
    * consider setting browser.tabs.drawInTitlebar to false in about:config
    */
-  :root {
-    --custom-sidebar-collapsed-width: 35px;
-    --custom-sidebar-full-width: 25vw;
-    --custom-sidebar-border: 0px solid #404040;
-  }
+
 
 /* Tab bar font size */
 /*
@@ -20,10 +16,18 @@
   }
 */
 
-/* Hide sidebar header */
+/* sidebar header */
   #sidebar-header {
-    display: none;
+    /* visibility: hidden; 
+    padding: 10 !important; */
+    background-color: #1c1b22 !important; 
+    opacity: 0.7 !important;
   }
+
+  #sidebar-header:not(:hover) #sidebar-close {
+    /* BAD NEWS: display: none !important; */
+    opacity: 0 !important;
+}
 
 /* Hides tabs bar */
   #TabsToolbar {
@@ -34,17 +38,25 @@
     visibility: collapse !important;
   }
 
+
+/* Autohide Side Bar Variables */
+  :root {
+    --custom-sidebar-collapsed-width: 35px;
+    --custom-sidebar-full-width: 15vw;
+    --custom-sidebar-border: 0px solid #404040;
+  }
+
 /* Autohide side bar */
 
-  #navigator-toolbox {
+  :root[titlepreface="᠎"] #navigator-toolbox {
     border-bottom: 0 !important;
   }
 
-  #browser {
+  :root[titlepreface="᠎"] #browser {
     position: relative;
   }
 
-  #sidebar-box:not([hidden]) {
+  :root[titlepreface="᠎"] #sidebar-box:not([hidden]) {
     position: absolute;
     z-index: 1;
     display: flex;
@@ -55,32 +67,34 @@
     max-width: var(--custom-sidebar-full-width) !important;
     width: var(--custom-sidebar-collapsed-width) !important;
     height: 100%;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease; 
+    transition-delay: 0.5s; /* 1s delay when mouse moves out */ 
   }
 
-  #sidebar-box:hover,
-  #sidebar-header,
-  #sidebar {
+  :root[titlepreface="᠎"] #sidebar-box:hover,
+  :root[titlepreface="᠎"] #sidebar-header,
+  :root[titlepreface="᠎"] #sidebar {
     width: var(--custom-sidebar-full-width) !important;
+    transition-delay: 0s; /* No delay when mouse moves in */
   }
 
-  #sidebar {
+  :root[titlepreface="᠎"] #sidebar {
     flex-grow: 1;
   }
 
-  #sidebar-splitter {
+  :root[titlepreface="᠎"] #sidebar-splitter {
     display: none;
   }
 
-  #sidebar-box:not([hidden]) ~ #appcontent {
+  :root[titlepreface="᠎"] #sidebar-box:not([hidden]) ~ #appcontent {
     margin-left: var(--custom-sidebar-collapsed-width);
   }
 
-  #sidebar-box:not([hidden]) ~ #appcontent .findbar-container {
+  :root[titlepreface="᠎"] #sidebar-box:not([hidden]) ~ #appcontent .findbar-container {
     min-width: calc(100vw - 48px - var(--custom-sidebar-collapsed-width)) !important;
   }
 
-/* Sidebar on the right */
+  /* Sidebar on the right */
 /*
   #sidebar-box[positionend="true"]:not([hidden]) {
     right: 0;
@@ -134,8 +148,8 @@ See the above repository for updates as well as full license text. */
 /* Compatibility options for hide_tabs_toolbar.css and tabs_on_bottom.css at the end of this file */
 
   :root{
-    --uc-autohide-toolbox-delay: 200ms; /* Wait 0.1s before hiding toolbars */
-    --uc-toolbox-rotation: 82deg;  /* This may need to be lower on mac - like 75 or so */
+    --uc-autohide-toolbox-delay: 500ms; /* Wait 0.1s before hiding toolbars */
+    --uc-toolbox-rotation: 75deg;  /* This may need to be lower on mac - like 75 or so */
   }
 
   :root[sizemode="maximized"]{

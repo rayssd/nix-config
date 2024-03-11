@@ -44,6 +44,7 @@ in
       zle -N edit-command-line
       bindkey '^e' edit-command-line
       bindkey -v '^?' backward-delete-char
+      bindkey -v '^H' backward-delete-char
       bindkey -M vicmd '^[[1;5C' emacs-forward-word
       bindkey -M vicmd '^[[1;5D' emacs-backward-word
       bindkey -M viins '^[[1;5C' emacs-forward-word
@@ -51,6 +52,9 @@ in
 
       HISTSIZE=10000000
       SAVEHIST=10000000
+
+      bindkey "^[[3~" delete-char
+      bindkey -a "^[[3~" delete-char
 
       if [[ $+commands[fzf-share] == 1 ]]; then
         source "$(fzf-share)/key-bindings.zsh"

@@ -16,7 +16,8 @@ keymap.set("n", "<leader>jj", ":call RangeJsonBeautify()<CR>")
 keymap.set("v", "gq", ":!~/Projects/jp43/jp43.sh<CR>")
 
 -- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+-- keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>") -- toggle file explorer
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore

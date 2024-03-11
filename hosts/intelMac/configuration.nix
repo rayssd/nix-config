@@ -1,9 +1,10 @@
-{ pkgs, inputs, ... }: 
+{ config, pkgs, inputs, ... }: 
 
 {
   imports = [
     ../../modules/system/zsh
     ../../modules/system/yabai
+    ../../modules/system/skhd
   ];
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -11,19 +12,33 @@
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
     systemPath = [ 
-      "/opt/homebrew/bin"
       "~/.local/bin"
     ];
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [ 
       coreutils
+      bat
+      btop
+      dprint
+      eza
+      exercism
+      fd
+      git
+      gh
+      jq
+      lnav
+      mongosh
+      ollama
+      ripgrep
+      tealdeer
+      zoxide
 
       # LSPs
       deno
       lua-language-server
       marksman
       nil
-      rust-analyzer
+      rustup
 
     ];
   };
@@ -38,7 +53,14 @@
   # nix.package = pkgs.nix;
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix = {
+    settings.experimental-features = "nix-command flakes";
+    gc = { 
+      automatic = true; 
+      interval = { Weekday = 7; Hour = 0; Minute = 0; };
+      options = "--delete-older-than 30d";
+    };
+  };
 
   # Set Git commit hash for darwin-version.
   # system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -64,8 +86,8 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
-    casks = [ ];
-    taps = [ ];
+    casks = [ "raycast" "zoom" "wireshark"];
+    taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];
   };
 }
