@@ -5,6 +5,8 @@
     ../../modules/system/zsh
     ../../modules/system/yabai
     ../../modules/system/skhd
+    ../../modules/system/karabiner-elements
+    # ../../modules/system/sketchybar
   ];
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -39,7 +41,7 @@
       marksman
       nil
       rustup
-
+      python311Packages.python-lsp-server
     ];
   };
 
@@ -83,10 +85,26 @@
 
   homebrew = {
     enable = true;
+    # onActivation = {
+    #   cleanup = "uninstall";
+      # autoUpdate = true;
+      # upgrade = true;
+    # };
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
-    casks = [ "raycast" "zoom" "wireshark"];
+    casks = [ 
+      "firefox"
+      "raycast"
+      "hiddenbar"
+      "maccy"
+      "scroll-reverser"
+      "stats"
+      "wireshark"
+      "zoom" 
+      "microsoft-teams"
+      "gpg-suite-no-mail"
+    ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];
   };

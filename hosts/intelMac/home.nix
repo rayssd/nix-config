@@ -7,7 +7,6 @@ let
     editor = "neovim";
     shell = "zsh";
     browser = "firefox";
-    keyremap = "keyd";
     multiplexer = "tmux";
     fuzzyFinder = "fzf";
   };
@@ -21,7 +20,7 @@ in
     ../../${args.userAppsPath}/${args.terminal}
     ../../${args.userAppsPath}/${args.editor}
     ../../${args.userAppsPath}/${args.shell}
-#    ../../${args.userAppsPath}/${args.browser}
+    # ../../${args.userAppsPath}/${args.browser}
     ../../${args.userAppsPath}/${args.multiplexer}
     ../../${args.userAppsPath}/mtools
     ../../${args.userAppsPath}/${args.fuzzyFinder}
@@ -43,18 +42,12 @@ in
   # environment.
   home.packages = with pkgs; [
     nixcasks.bitwarden
-    nixcasks.maccy
-    nixcasks.hiddenbar
-    # nixcasks.raycast
-    nixcasks.stats
     nixcasks.obsidian
-    nixcasks.scroll-reverser
     nixcasks.vscodium
     nixcasks.webcatalog
-    # nixcasks.wireshark # not available?!?!?!
-    # nixcasks.zoom
     nixcasks.slack
     nixcasks.flameshot
+    # raycast
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

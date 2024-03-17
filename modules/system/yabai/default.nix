@@ -85,7 +85,7 @@
       # ===== External Bars ===========================
       
       # add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
-      # yabai -m config external_bar all:30:0
+      yabai -m config external_bar all:30:0
     '';
   };
 }

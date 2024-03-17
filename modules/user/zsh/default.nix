@@ -12,7 +12,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
-    # syntaxHighlighting.enable = true;
+    syntaxHighlighting.enable = true;
     shellAliases = myAliases;
     plugins = [
       {
@@ -21,7 +21,6 @@ in
         file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
     ];
-    # completionInit = "autoload -U compinit && compinit -u";
     initExtra = ''
       # preserves zsh command history across tmux windows
       setopt inc_append_history
@@ -30,13 +29,11 @@ in
       # ignore duplicate commands
       setopt hist_save_no_dups
 
-
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
 
-      # bindkey '^I'      autosuggest-accept
-
       bindkey -v
+
       # Enable Ctrl-x-e to edit command line
       autoload -U edit-command-line
 

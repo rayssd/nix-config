@@ -1,15 +1,46 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.tmux = {
     enable = true;
     prefix = "C-b";
     keyMode = "vi";
-    terminal = "xterm-256color";
+    # terminal = "xterm-256color";
+    terminal = "alacritty";
     baseIndex = 1;
     escapeTime = 10;
     historyLimit = 50000;
     mouse = true;
+    plugins = with pkgs.tmuxPlugins; [
+      { plugin = catppuccin;
+        extraConfig = ''
+
+          # Make status bar background transparent
+          set-option -g status-style bg=default
+
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator " "
+          set -g @catppuccin_window_middle_separator " █"
+          set -g @catppuccin_window_number_position "right"
+
+          set -g @catppuccin_window_default_fill "number"
+          set -g @catppuccin_window_default_text "#W"
+
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#W"
+
+          set -g @catppuccin_status_modules_right "directory user host session"
+          set -g @catppuccin_status_left_separator  " "
+          set -g @catppuccin_status_right_separator ""
+          set -g @catppuccin_status_right_separator_inverse "no"
+          set -g @catppuccin_status_fill "icon"
+          set -g @catppuccin_status_connect_separator "no"
+
+          set -g @catppuccin_directory_text "#{pane_current_path}"
+
+        '';
+      }
+    ];
     extraConfig = ''
 
       bind -T copy-mode-vi v send -X begin-selection
@@ -43,35 +74,6 @@
       bind-key -n C-8 select-window -t :8
       bind-key -n C-9 select-window -t :9
 
-      # zsh prompt
-      set -ag terminal-overrides ",alacritty:RGB"
-
-      # reload conf
-      bind r source-file ~/.config/tmux/tmux.conf \; display ".tmux.conf reloaded!"
-
-      set -g status 'on'
-      set -g status-position bottom
-      set -g status-bg 'colour235'
-      set -g status-justify 'left'
-      set -g status-left-length '100'
-      set -g status-right-length '100'
-      set -g message-style fg='colour222',bg='colour238'
-      set -g message-command-style fg='colour222',bg='colour238'
-      set -g pane-border-style fg='colour238'
-      set -g pane-active-border-style fg='colour154'
-      setw -g window-status-activity-style fg='colour154',bg='colour235',none
-      setw -g window-status-separator ""
-      setw -g window-status-style fg='colour121',bg='colour235',none
-
-      # set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami)  #(uptime  | cut -d " " -f 1,2,3) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
-       set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
-# set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] %r  %a  %Y #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour154] #(rainbarf --battery --remaining --no-rgb) '
-      set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour154] '
-      setw -g window-status-format '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[default] #I  #W #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
-      setw -g window-status-current-format '#[fg=colour235,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I  #W  #F #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]'
-
-
-      # vim-tmux-navigator
       # Smart pane switching with awareness of Vim splits.
       # See: https://github.com/christoomey/vim-tmux-navigator
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
@@ -91,6 +93,12 @@
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+      # zsh prompt
+      set -ag terminal-overrides ",alacritty:RGB"
+
+      # reload conf
+      bind r source-file ~/.config/tmux/tmux.conf \; display ".tmux.conf reloaded!"
       '';
   };
 }

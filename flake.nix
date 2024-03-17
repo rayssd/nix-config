@@ -46,11 +46,26 @@
       x86Darwin = "x86_64-darwin";
       ARMDarwin = "aarch64-darwin";
       MacOSVersion = "ventura";
+
+      args = {
+        userAppsPath = "modules/user";
+        systemAppsPath = "modules/system";
+        # username = if (builtins.elem nixpkgs.system ["x86_64-darwin" "aarch64-darwin"]) then "ray" else "loki";
+        terminal = "alacritty";
+        editor = "neovim";
+        shell = "zsh";
+        browser = "firefox";
+        multiplexer = "tmux";
+        fuzzyFinder = "fzf";
+      };
     in
     {
       nixosConfigurations = {
         "default" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { 
+            inherit inputs;
+            inherit args;
+          };
           modules = [
             ./hosts/default/configuration.nix
             # this line below + another line configuration.nix
@@ -65,6 +80,7 @@
         "intelMac" = nix-darwin.lib.darwinSystem {
           specialArgs = rec { 
             inherit inputs; 
+            inherit args;
             nixcasks = import inputs.nixcasks {
               inherit pkgs nixpkgs;
               osVersion = MacOSVersion;
@@ -87,7 +103,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 # addd custom flake below, inherit <custom-flake>
-                extraSpecialArgs = { };
+                extraSpecialArgs = { inherit args; };
                 users."ray".imports = [ ./hosts/intelMac/home.nix ];
               };
             }
@@ -103,7 +119,7 @@
                   "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
                 };
                 mutableTaps = false;
-                autoMigrate = true;
+                autoMigrate = false;
               };
             }
           ];
@@ -118,7 +134,7 @@
           inherit x86pkgs;
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
-          extraSpecialArgs = {};
+          extraSpecialArgs = { inherit args; };
           modules = [
             ./hosts/default/home.nix
           ];

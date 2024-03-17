@@ -1,5 +1,6 @@
 " General Settings
-set editorcmd /Applications/Alacritty.app/Contents/MacOS/alacritty -e /bin/zsh -lc 'nvim %f "+call cursor(%l, %c)"'
+" set editorcmd /Applications/Alacritty.app/Contents/MacOS/alacritty -e /bin/zsh -lc 'nvim %f "+call cursor(%l, %c)"'
+set editorcmd /Users/ray/Applications/Home\ Manager\ Apps/Alacritty.app/Contents/MacOS/alacritty -e /bin/zsh -lc 'nvim %f "+call cursor(%l, %c)"'
 set searchurls.docs https://docs.mongodb.com/search/?q=%s
 set searchurls.kf https://search.corp.mongodb.com/#q=%s&sort=relevancy
 set smoothscroll true
