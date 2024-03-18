@@ -1,22 +1,46 @@
 { pkgs, ... }:
+let
+  my-catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "catppuccin";
+    version = "unstable-2024-03-12";
+    src = pkgs.fetchFromGitHub {
+      owner = "migueltc13";
+      repo = "catppuccin-tmux";
+      rev = "e3eda031dd20ace2f3007f3ff3acc47460678ede";
+      hash = "sha256-L/p2g94B25Iq51dNE2oUdY0q523PG3qz7sYeEdlOF/k=";
+    };
+  };
 
+  # my-catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
+  #   pluginName = "catppuccin";
+  #   version = "unstable-2024-03-12";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "catppuccin";
+  #     repo = "tmux";
+  #     rev = "4eb10fa510548891ac9c5afc5b43679096361fe3";
+  #     hash = "sha256-gRhkrPnWhgJ534RsQi7x+imZPskvppHLJnhpXR57XAY=";
+  #   };
+  #   postInstall = ''
+  #     sed -i -e 's|thm_bg="#1e1e2e"|thm_bg="#1e1e2e00"|g' $target/catppuccin-mocha.tmuxtheme
+  #   '';
+  # };
+in
 {
   programs.tmux = {
     enable = true;
     prefix = "C-b";
     keyMode = "vi";
     # terminal = "xterm-256color";
-    terminal = "alacritty";
+    terminal = "tmux-256color";
     baseIndex = 1;
     escapeTime = 10;
     historyLimit = 50000;
     mouse = true;
     plugins = with pkgs.tmuxPlugins; [
-      { plugin = catppuccin;
+      { plugin = my-catppuccin;
         extraConfig = ''
-
           # Make status bar background transparent
-          set-option -g status-style bg=default
+          set -g status-style bg=default
 
           set -g @catppuccin_window_left_separator ""
           set -g @catppuccin_window_right_separator " "
@@ -29,7 +53,7 @@
           set -g @catppuccin_window_current_fill "number"
           set -g @catppuccin_window_current_text "#W"
 
-          set -g @catppuccin_status_modules_right "directory user host session"
+          set -g @catppuccin_status_modules_right "directory session"
           set -g @catppuccin_status_left_separator  " "
           set -g @catppuccin_status_right_separator ""
           set -g @catppuccin_status_right_separator_inverse "no"
@@ -95,7 +119,7 @@
       bind-key -T copy-mode-vi 'C-\' select-pane -l
 
       # zsh prompt
-      set -ag terminal-overrides ",alacritty:RGB"
+      set -ag terminal-overrides ",alacritty*:Tc"
 
       # reload conf
       bind r source-file ~/.config/tmux/tmux.conf \; display ".tmux.conf reloaded!"

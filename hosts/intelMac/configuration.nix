@@ -19,7 +19,6 @@
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [ 
       coreutils
-      bat
       btop
       dprint
       eza
@@ -33,7 +32,6 @@
       ollama
       ripgrep
       tealdeer
-      zoxide
 
       # LSPs
       deno

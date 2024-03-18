@@ -3,7 +3,7 @@
 {
   services.yabai = {
     enable = true;
-    enableScriptingAddition = true;
+    enableScriptingAddition = false;
     config = {
       mouse_follows_focus="off";
       focus_follows_mouse="off";
@@ -36,8 +36,8 @@
     };
 
     extraConfig = ''
-      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-      sudo yabai --load-sa
+      # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+      # sudo yabai --load-sa
 
       # ===== Rules ==================================
 
@@ -73,19 +73,19 @@
       yabai -m rule --add label="t2" app="^t2$" title=".*" space=5
 
       # ===== Signals =================================
-      
+
       # yabai -m signal -add event=application_activated action="echo \"application ID \$YABAI_PROCESS_ID activated\""
-      
+
       # focus window after active space changes
       # yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[-1].id')"
       #
       # focus window after active display changes
       # yabai -m signal --add event=display_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[-1].id')"
-      
+
       # ===== External Bars ===========================
-      
+
       # add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
-      yabai -m config external_bar all:30:0
+      # yabai -m config external_bar all:30:0
     '';
   };
 }

@@ -2,10 +2,11 @@
 let
   myAliases = {
     nrs = "sudo nixos-rebuild switch --flake ~/nix-config/#default";
-    drs = "sudo darwin-rebuild switch --flake ~/nix-config/#intelMac";
+    drs = "nix update flake --flake ~/nix-config && darwin-rebuild switch --flake ~/nix-config/#intelMac";
     hmsl = "home-manager switch --flake ~/nix-config/#loki";
     hmsr = "home-manager switch --flake ~/nix-config/#ray";
-    ll = "exa -lh --color=always --group-directories-first";
+    ll = "eza -lh --color=always --group-directories-first";
+    cat = "bat";
   };
 in
 {
@@ -52,6 +53,12 @@ in
 
       bindkey "^[[3~" delete-char
       bindkey -a "^[[3~" delete-char
+     
+      # FZF theme and config
+      export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
       if [[ $+commands[fzf-share] == 1 ]]; then
         source "$(fzf-share)/key-bindings.zsh"
