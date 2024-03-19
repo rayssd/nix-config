@@ -25,6 +25,7 @@ in
     ../../${args.userAppsPath}/mtools
     ../../${args.userAppsPath}/bat
     ../../${args.userAppsPath}/zoxide
+    ../../${args.userAppsPath}/karabiner-elements
     ../../${args.userAppsPath}/${args.fuzzyFinder}
   ];
   # Home Manager needs a bit of information about you and the paths it should

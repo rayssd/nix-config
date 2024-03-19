@@ -39,18 +39,21 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, nix-homebrew, ... }@inputs:
     let
+      MacOSVersion = "ventura";
+      linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
+      darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
+      forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+
       x86Linux = "x86_64-linux";
       x86pkgs = nixpkgs.legacyPackages.${x86Linux};
-      x86Darwin = "x86_64-darwin";
-      ARMDarwin = "aarch64-darwin";
-      MacOSVersion = "ventura";
 
       args = {
         userAppsPath = "modules/user";
         systemAppsPath = "modules/system";
-        # username = if (builtins.elem nixpkgs.system ["x86_64-darwin" "aarch64-darwin"]) then "ray" else "loki";
+        macUser = "ray";
+        linuxUser = "loki";
         terminal = "alacritty";
         editor = "neovim";
         shell = "zsh";
@@ -58,6 +61,7 @@
         multiplexer = "tmux";
         fuzzyFinder = "fzf";
       };
+
     in
     {
       nixosConfigurations = {
@@ -75,18 +79,17 @@
         };
       };
 
-      darwinConfigurations = {
-        system = x86Darwin;
-        "intelMac" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (system:
+        nix-darwin.lib.darwinSystem {
+          inherit system;
           specialArgs = rec { 
-            inherit inputs; 
-            inherit args;
+            inherit inputs args; 
             nixcasks = import inputs.nixcasks {
               inherit pkgs nixpkgs;
               osVersion = MacOSVersion;
             };
             pkgs = import nixpkgs {
-              system = x86Darwin;
+              inherit system;
               config.allowUnfree = true;
               config.packageOverrides = prev: {
                 inherit nixcasks;
@@ -95,7 +98,7 @@
             };
           };
           modules = [
-            ./hosts/intelMac/configuration.nix
+            ./hosts/darwin/configuration.nix
 
             home-manager.darwinModules.home-manager
             {
@@ -104,14 +107,14 @@
                 useUserPackages = true;
                 # addd custom flake below, inherit <custom-flake>
                 extraSpecialArgs = { inherit args; };
-                users."ray".imports = [ ./hosts/intelMac/home.nix ];
+                users.${args.macUser}.imports = [ ./hosts/darwin/home.nix ];
               };
             }
 
-            inputs.nix-homebrew.darwinModules.nix-homebrew
+            nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
-                user = "ray";
+                user = args.macUser;
                 enable = true;
                 taps = {
                   "homebrew/homebrew-core" = inputs.homebrew-core;
@@ -123,14 +126,14 @@
               };
             }
           ];
-        };
-      };
+        }
+      );
 
       # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."intelMac".pkgs;
+      # darwinPackages = self.darwinConfigurations."darwin".pkgs;
 
       homeConfigurations = {
-        "loki" = home-manager.lib.homeManagerConfiguration {
+        ${args.linuxUser} = home-manager.lib.homeManagerConfiguration {
           inherit x86pkgs;
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix

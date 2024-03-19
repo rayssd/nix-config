@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: 
+{ config, pkgs, args, ... }: 
 
 {
   imports = [
@@ -8,8 +8,6 @@
     ../../modules/system/karabiner-elements
     # ../../modules/system/sketchybar
   ];
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
@@ -43,9 +41,9 @@
     ];
   };
 
-  users.users."ray" = {
-    name = "ray";
-    home = "/Users/ray";
+  users.users.${args.macUser} = {
+    name = args.macUser;
+    home = "/Users/${args.macUser}";
   };
 
   # Auto upgrade nix package and the daemon service.
@@ -67,25 +65,36 @@
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;
 
   # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "x86_64-darwin";
+  # nixpkgs.hostPlatform = "x86_64-darwin";
 
   system = {
+    stateVersion = 4;
     defaults = {
       finder.AppleShowAllExtensions = true;
       finder._FXShowPosixPathInTitle = true;
-      dock.autohide = true;
-      NSGlobalDomain.AppleShowAllExtensions = true;
-      # NSGlobalDomain.InitialKeyRepeat = 14;
-      # NSGlobalDomain.KeyRepeat = 1;
+      dock = {
+        autohide = false;
+        # show-recents = false;
+        # launchanim = true;
+        # mouse-over-hilite-stack = true;
+        orientation = "right";
+        # tilesize = 48;
+      };
+      NSGlobalDomain = {
+        AppleShowAllExtensions = true;
+        # InitialKeyRepeat = 14;
+        # KeyRepeat = 1;
+        "com.apple.mouse.tapBehavior" = 1;
+      };
     };
 
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;
     };
+
   };
 
   homebrew = {

@@ -1,0 +1,89 @@
+{
+  "title": "My Custom Shortcuts",
+  "rules": [
+    {
+      "description": "Option-Return to open Terminal.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": { "mandatory": ["option"], "optional": ["caps_lock"] }
+          },
+          "to": [{ "shell_command": "open -n '/Applications/Alacritty.app'" }]
+        }
+      ]
+    },
+    {
+      "description": "Capslock-T to open Terminal.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "t", "modifiers": { "mandatory": ["fn"], "optional": ["caps_lock"] } },
+          "to": [{ "shell_command": "open -n '/Users/ray/Applications/Home Manager Apps/Alacritty.app'" }]
+        }
+      ]
+    },
+    {
+      "description": "Option-B to open Brave.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "b", "modifiers": { "mandatory": ["option"], "optional": ["caps_lock"] } },
+          "to": [{ "shell_command": "open -n '/Applications/Brave Browser.app'" }]
+        }
+      ]
+    },
+    {
+      "description": "Cmd+Shift+4 to activate Flameshot",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "4", "modifiers": { "mandatory": ["command", "shift"] } },
+          "to": [{ "shell_command": "open '/Applications/flameshot.app'" }]
+        }
+      ]
+    },
+    {
+      "description": "Fn+Space to Shift+Command+4 (Keychron K8)",
+      "manipulators": [
+        {
+          "from": { "key_code": "spacebar", "modifiers": { "mandatory": ["fn"] } },
+          "to": [{ "key_code": "a", "modifiers": ["shift", "command"] }],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Scroll Lock to Shift+Command+a (Niz Plum)",
+      "manipulators": [
+        {
+          "from": { "key_code": "scroll_lock" },
+          "to": [{ "key_code": "a", "modifiers": ["shift", "command"] }],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Screenshot (in flameshot only) to Shift+Command+Option+4 ",
+      "manipulators": [
+        {
+          "from": { "key_code": "print_screen" },
+          "to": [{ "key_code": "4", "modifiers": ["shift", "command", "option"] }],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Post Esc if Caps is tapped, fn if held.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "fn", "modifiers": { "optional": ["any"] } },
+          "to": [{ "key_code": "fn", "lazy": true }],
+          "to_if_alone": [{ "key_code": "escape" }]
+        }
+      ]
+    }
+  ]
+}
