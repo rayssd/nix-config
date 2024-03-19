@@ -70,6 +70,9 @@ require("catppuccin").setup({
     },
 })
 
+-- necessary to update line number colours
+vim.cmd("autocmd VimEnter * hi LineNr guibg=NONE guifg=#6c7086")
+
 vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
 
 -- set colorscheme with protected call

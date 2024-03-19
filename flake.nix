@@ -44,16 +44,28 @@
       MacOSVersion = "ventura";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
-      forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
+      # forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
 
       x86Linux = "x86_64-linux";
       x86pkgs = nixpkgs.legacyPackages.${x86Linux};
 
       args = {
-        userAppsPath = "modules/user";
-        systemAppsPath = "modules/system";
-        macUser = "ray";
-        linuxUser = "loki";
+        userPkgsPath = "pkgs/user";
+        systemPkgsPath = "pkgs/system";
+        modulesPath = "modules";
+        hostsPath = "hosts";
+        mac = {
+          user = "ray";
+          wm = "yabai";
+          keymapper = "skhd";
+          vkeyboard = "karabiner-elements";
+        };
+        linux = {
+          user = "loki";
+          wm = "hyprland";
+          vkeyboard = "keyd";
+        };
+        
         terminal = "alacritty";
         editor = "neovim";
         shell = "zsh";
@@ -64,20 +76,21 @@
 
     in
     {
-      nixosConfigurations = {
-        "default" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = nixpkgs.lib.genAttrs linuxSystems (system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
           specialArgs = { 
             inherit inputs;
             inherit args;
           };
           modules = [
-            ./hosts/default/configuration.nix
+            ./${args.hostsPath}/default/configuration.nix
             # this line below + another line configuration.nix
             # allows all configuration.nix to use home-manager modules
             # inputs.home-manager.nixosModules.default
           ];
-        };
-      };
+        }
+      );
 
       darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (system:
         nix-darwin.lib.darwinSystem {
@@ -94,37 +107,14 @@
               config.packageOverrides = prev: {
                 inherit nixcasks;
               };
-              # nixcasks = inputs.nixcasks.legacyPackages."${x86Darwin}";
             };
           };
           modules = [
-            ./hosts/darwin/configuration.nix
-
+            ./${args.hostsPath}/darwin/configuration.nix
             home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                # addd custom flake below, inherit <custom-flake>
-                extraSpecialArgs = { inherit args; };
-                users.${args.macUser}.imports = [ ./hosts/darwin/home.nix ];
-              };
-            }
-
+            ./${args.modulesPath}/home-manager
             nix-homebrew.darwinModules.nix-homebrew
-            {
-              nix-homebrew = {
-                user = args.macUser;
-                enable = true;
-                taps = {
-                  "homebrew/homebrew-core" = inputs.homebrew-core;
-                  "homebrew/homebrew-cask" = inputs.homebrew-cask;
-                  "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-                };
-                mutableTaps = false;
-                autoMigrate = false;
-              };
-            }
+            ./${args.modulesPath}/nix-homebrew
           ];
         }
       );

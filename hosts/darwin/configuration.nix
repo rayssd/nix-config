@@ -1,21 +1,21 @@
-{ config, pkgs, args, ... }: 
+{ config, pkgs, args, ... }:
 
 {
   imports = [
-    ../../modules/system/zsh
-    ../../modules/system/yabai
-    ../../modules/system/skhd
-    ../../modules/system/karabiner-elements
-    # ../../modules/system/sketchybar
+    ../../${args.systemPkgsPath}/${args.shell}
+    ../../${args.systemPkgsPath}/${args.mac.wm}
+    ../../${args.systemPkgsPath}/${args.mac.keymapper}
+    ../../${args.systemPkgsPath}/${args.mac.vkeyboard}
+    # ../../${args.systemPkgsPath}/sketchybar
   ];
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
-    systemPath = [ 
+    systemPath = [
       "~/.local/bin"
     ];
     pathsToLink = [ "/Applications" ];
-    systemPackages = with pkgs; [ 
+    systemPackages = with pkgs; [
       coreutils
       btop
       dprint
@@ -41,9 +41,9 @@
     ];
   };
 
-  users.users.${args.macUser} = {
-    name = args.macUser;
-    home = "/Users/${args.macUser}";
+  users.users.${args.mac.user} = {
+    name = args.mac.user;
+    home = "/Users/${args.mac.user}";
   };
 
   # Auto upgrade nix package and the daemon service.
@@ -53,8 +53,8 @@
   # Necessary for using flakes on this system.
   nix = {
     settings.experimental-features = "nix-command flakes";
-    gc = { 
-      automatic = true; 
+    gc = {
+      automatic = true;
       interval = { Weekday = 7; Hour = 0; Minute = 0; };
       options = "--delete-older-than 30d";
     };
@@ -107,7 +107,7 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
-    casks = [ 
+    casks = [
       "firefox"
       "raycast"
       "hiddenbar"
@@ -115,7 +115,7 @@
       "scroll-reverser"
       "stats"
       "wireshark"
-      "zoom" 
+      "zoom"
       "microsoft-teams"
       "gpg-suite-no-mail"
     ];

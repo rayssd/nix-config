@@ -1,38 +1,23 @@
-{ config, pkgs, ... }:
-let
-  args = {
-    userAppsPath = "modules/user";
-    username = "ray";
-    terminal = "alacritty";
-    editor = "neovim";
-    shell = "zsh";
-    browser = "firefox";
-    multiplexer = "tmux";
-    fuzzyFinder = "fzf";
-  };
-in
+{ config, pkgs, args, ... }:
 {
   imports = [
-    # copies .app to /Applications
-    # ../../${args.userAppsPath}/copyApps
-    # ../../${args.userAppsPath}/trampoline
-    ../../${args.userAppsPath}/direnv
-    ../../${args.userAppsPath}/${args.terminal}
-    ../../${args.userAppsPath}/${args.editor}
-    ../../${args.userAppsPath}/${args.shell}
-    # ../../${args.userAppsPath}/${args.browser}
-    ../../${args.userAppsPath}/${args.multiplexer}
-    ../../${args.userAppsPath}/mtools
-    ../../${args.userAppsPath}/bat
-    ../../${args.userAppsPath}/zoxide
-    ../../${args.userAppsPath}/karabiner-elements
-    ../../${args.userAppsPath}/${args.fuzzyFinder}
+    ../../${args.userPkgsPath}/direnv
+    ../../${args.userPkgsPath}/${args.terminal}
+    ../../${args.userPkgsPath}/${args.editor}
+    ../../${args.userPkgsPath}/${args.shell}
+    # ../../${args.userPkgsPath}/${args.browser}
+    ../../${args.userPkgsPath}/${args.multiplexer}
+    ../../${args.userPkgsPath}/mtools
+    ../../${args.userPkgsPath}/bat
+    ../../${args.userPkgsPath}/zoxide
+    ../../${args.userPkgsPath}/${args.mac.vkeyboard}
+    ../../${args.userPkgsPath}/${args.fuzzyFinder}
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home = {
-    username = args.username;
-    homeDirectory = "/Users/${args.username}";
+    username = args.mac.user;
+    homeDirectory = "/Users/${args.mac.user}";
   };
 
   nix.gc = {
