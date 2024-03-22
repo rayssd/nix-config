@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ../../${args.systemPkgsPath}/${args.shell}
-    ../../${args.systemPkgsPath}/${args.mac.wm}
-    ../../${args.systemPkgsPath}/${args.mac.keymapper}
-    ../../${args.systemPkgsPath}/${args.mac.vkeyboard}
-    # ../../${args.systemPkgsPath}/sketchybar
+    ../../${args.systemModulesPath}/${args.shell}
+    ../../${args.systemModulesPath}/${args.mac.wm}
+    ../../${args.systemModulesPath}/${args.mac.keymapper}
+    ../../${args.systemModulesPath}/${args.mac.vkeyboard}
+    ../../${args.systemModulesPath}/fonts
+    # ../../${args.systemModulesPath}/sketchybar
   ];
   environment = {
     shells = with pkgs; [ bash zsh ];
@@ -72,10 +73,13 @@
   system = {
     stateVersion = 4;
     defaults = {
-      finder.AppleShowAllExtensions = true;
-      finder._FXShowPosixPathInTitle = true;
+      finder = {
+        AppleShowAllExtensions = true;
+        _FXShowPosixPathInTitle = true;
+      };
+      trackpad.Clicking = true;
       dock = {
-        autohide = false;
+        autohide = true;
         # show-recents = false;
         # launchanim = true;
         # mouse-over-hilite-stack = true;
@@ -99,25 +103,23 @@
 
   homebrew = {
     enable = true;
-    # onActivation = {
-    #   cleanup = "uninstall";
-      # autoUpdate = true;
-      # upgrade = true;
-    # };
+    onActivation = {
+      cleanup = "uninstall";
+      autoUpdate = true;
+      upgrade = true;
+    };
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
     casks = [
-      "firefox"
-      "raycast"
       "hiddenbar"
       "maccy"
       "scroll-reverser"
       "stats"
       "wireshark"
-      "zoom"
       "microsoft-teams"
       "gpg-suite-no-mail"
+      "megasync"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

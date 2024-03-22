@@ -1,17 +1,17 @@
 { config, pkgs, args, ... }:
 {
   imports = [
-    ../../${args.userPkgsPath}/direnv
-    ../../${args.userPkgsPath}/${args.terminal}
-    ../../${args.userPkgsPath}/${args.editor}
-    ../../${args.userPkgsPath}/${args.shell}
-    # ../../${args.userPkgsPath}/${args.browser}
-    ../../${args.userPkgsPath}/${args.multiplexer}
-    ../../${args.userPkgsPath}/mtools
-    ../../${args.userPkgsPath}/bat
-    ../../${args.userPkgsPath}/zoxide
-    ../../${args.userPkgsPath}/${args.mac.vkeyboard}
-    ../../${args.userPkgsPath}/${args.fuzzyFinder}
+    ../../${args.userModulesPath}/direnv
+    ../../${args.userModulesPath}/${args.terminal}
+    ../../${args.userModulesPath}/${args.editor}
+    ../../${args.userModulesPath}/${args.shell}
+    ../../${args.userModulesPath}/${args.browser}
+    ../../${args.userModulesPath}/${args.multiplexer}
+    ../../${args.userModulesPath}/mtools
+    ../../${args.userModulesPath}/bat
+    ../../${args.userModulesPath}/zoxide
+    ../../${args.userModulesPath}/${args.mac.vkeyboard}
+    ../../${args.userModulesPath}/${args.fuzzyFinder}
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -33,9 +33,9 @@
     nixcasks.obsidian
     nixcasks.vscodium
     nixcasks.webcatalog
-    nixcasks.slack
+    # nixcasks.slack
     nixcasks.flameshot
-    # raycast
+    raycast
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

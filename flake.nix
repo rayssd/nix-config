@@ -35,13 +35,11 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-
-
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, nix-homebrew, ... }@inputs:
     let
-      MacOSVersion = "ventura";
+      MacOSVersion = "sonoma";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
       # forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
@@ -50,9 +48,9 @@
       x86pkgs = nixpkgs.legacyPackages.${x86Linux};
 
       args = {
-        userPkgsPath = "pkgs/user";
-        systemPkgsPath = "pkgs/system";
-        modulesPath = "modules";
+        userModulesPath = "modules/user";
+        systemModulesPath = "modules/system";
+        baseModulesPath = "modules/base";
         hostsPath = "hosts";
         mac = {
           user = "ray";
@@ -112,9 +110,9 @@
           modules = [
             ./${args.hostsPath}/darwin/configuration.nix
             home-manager.darwinModules.home-manager
-            ./${args.modulesPath}/home-manager
+            ./${args.baseModulesPath}/home-manager
             nix-homebrew.darwinModules.nix-homebrew
-            ./${args.modulesPath}/nix-homebrew
+            ./${args.baseModulesPath}/nix-homebrew
           ];
         }
       );

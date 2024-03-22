@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   services.yabai = {
     enable = true;
+    package = pkgs.yabai;
     enableScriptingAddition = true;
     config = {
       mouse_follows_focus="off";
@@ -36,8 +37,8 @@
     };
 
     extraConfig = ''
-      # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-      # sudo yabai --load-sa
+      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+      sudo yabai --load-sa
 
       # ===== Rules ==================================
 
