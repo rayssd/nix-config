@@ -7,7 +7,7 @@
     ../../${args.systemModulesPath}/${args.mac.keymapper}
     ../../${args.systemModulesPath}/${args.mac.vkeyboard}
     ../../${args.systemModulesPath}/fonts
-    # ../../${args.systemModulesPath}/sketchybar
+    ../../${args.systemModulesPath}/sketchybar
   ];
   environment = {
     shells = with pkgs; [ bash zsh ];
@@ -19,14 +19,17 @@
     systemPackages = with pkgs; [
       coreutils
       btop
+      lua5_4
       dprint
       eza
       exercism
+      jankyborders
       fd
       git
       gh
       jq
       lnav
+      nodejs_21
       mongosh
       ollama
       ripgrep
@@ -51,6 +54,8 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
+  security.pam.enableSudoTouchIdAuth = true;
+
   # Necessary for using flakes on this system.
   nix = {
     settings.experimental-features = "nix-command flakes";
@@ -72,19 +77,32 @@
 
   system = {
     stateVersion = 4;
+    startup.chime = false;
     defaults = {
       finder = {
         AppleShowAllExtensions = true;
         _FXShowPosixPathInTitle = true;
+        AppleShowAllFiles = true;
+        CreateDesktop = true;
+        FXDefaultSearchScope = "SCcf";
+        FXEnableExtensionChangeWarning = false;
+        FXPreferredViewStyle = "Nlsv";
+        # QuitMenuItem = false;
+        ShowPathbar = true;
+        ShowStatusBar = true;
       };
-      trackpad.Clicking = true;
+      trackpad = {
+        Clicking = true;
+        TrackpadRightClick = true;
+      };
       dock = {
         autohide = true;
         # show-recents = false;
         # launchanim = true;
         # mouse-over-hilite-stack = true;
         orientation = "right";
-        # tilesize = 48;
+        tilesize = 36;
+        static-only = true;
       };
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
@@ -92,6 +110,28 @@
         # KeyRepeat = 1;
         "com.apple.mouse.tapBehavior" = 1;
       };
+
+      # CustomUserPreferences = {
+      #   "com.apple.spaces" = {
+      #     "spans-displays" = false;
+      #   };
+      # };
+
+      magicmouse = {
+        MouseButtonMode = "TwoButton";
+      };
+
+      spaces = {
+        spans-displays = false;
+      };
+
+      # With SIP enabled, this does not work with error:
+      # defaults[95085:278887] Could not write domain com.apple.universalaccess; exiting
+      # universalaccess = {
+      #   reduceMotion = true;
+      #   reduceTransparency = false;
+      # };
+
     };
 
     keyboard = {
@@ -99,10 +139,11 @@
       remapCapsLockToEscape = true;
     };
 
+
   };
 
   homebrew = {
-    enable = true;
+    enable = false;
     onActivation = {
       cleanup = "uninstall";
       autoUpdate = true;
@@ -120,6 +161,9 @@
       "microsoft-teams"
       "gpg-suite-no-mail"
       "megasync"
+      "homebrew/cask-fonts/font-sf-mono"
+      "homebrew/cask-fonts/font-sf-pro"
+      "sf-symbols"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

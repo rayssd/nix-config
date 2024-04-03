@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710974515,
-        "narHash": "sha256-jZpdsypecYTOO9l12Vy77otGmh9uz8tGzcguifA30Vs=",
+        "lastModified": 1712093955,
+        "narHash": "sha256-94I0sXz6fiVBvUAk2tg6t3UpM5rOImj4JTSTNFbg64s=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1c2acec99933f9835cc7ad47e35303de92d923a4",
+        "rev": "80546b220e95a575c66c213af1b09fe255299438",
         "type": "github"
       },
       "original": {
@@ -58,11 +58,11 @@
     "homebrew-bundle": {
       "flake": false,
       "locked": {
-        "lastModified": 1710458677,
-        "narHash": "sha256-m8JAD5OwtXS7Et4Zq1ElHnBxt+gk4yWMCkiOk8VvrGE=",
+        "lastModified": 1712068578,
+        "narHash": "sha256-N0dD+r/Ci73U1dbQbLBBWYUjwtGht5Ad3ON7sjAGGaY=",
         "owner": "homebrew",
         "repo": "homebrew-bundle",
-        "rev": "faf12b3096f5e05aba220c380cfff6a223572917",
+        "rev": "05e54ee3370fc118496ec6e3019527bf170c036c",
         "type": "github"
       },
       "original": {
@@ -74,11 +74,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1711072446,
-        "narHash": "sha256-Npq5uHE5/XlnCp5ZO5Ltzq4VKC7/uHvAVmWOTXkC5Fs=",
+        "lastModified": 1712097486,
+        "narHash": "sha256-FwAUyI8ia2/a9XG3qNkGGa36oR/Ls6IuHJiZVfbEgwA=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "4f6b80f4e77f8e1ed287938bed5018a2a60e27db",
+        "rev": "d3c370311e001d05772c4387b2498a81d01e648a",
         "type": "github"
       },
       "original": {
@@ -87,14 +87,30 @@
         "type": "github"
       }
     },
+    "homebrew-cask-fonts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712026950,
+        "narHash": "sha256-4zgFXPaGiZox8IQGhamyHipKaGqE30wTgaZ49SLyW6M=",
+        "owner": "homebrew",
+        "repo": "homebrew-cask-fonts",
+        "rev": "58fefb47478f75c262e2efc369e84021f6612fc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homebrew",
+        "repo": "homebrew-cask-fonts",
+        "type": "github"
+      }
+    },
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1711075378,
-        "narHash": "sha256-zyPEnnqHq4UFaL9bazNCs2EqBZxQdXqOylKJB8APix4=",
+        "lastModified": 1712099442,
+        "narHash": "sha256-Xf9oEPb1fHiXhK/rLr5FgIZ0jqyitxA9J53wkMJ+Q5M=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "650d8abb0d46faa9a1c028262c174ffa2367610c",
+        "rev": "bc520f7367fec8e9772d68d2450efb856543c362",
         "type": "github"
       },
       "original": {
@@ -110,11 +126,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710717205,
-        "narHash": "sha256-Wf3gHh5uV6W1TV/A8X8QJf99a5ypDSugY4sNtdJDe0A=",
+        "lastModified": 1711763326,
+        "narHash": "sha256-sXcesZWKXFlEQ8oyGHnfk4xc9f2Ip0X/+YZOq3sKviI=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "bcc8afd06e237df060c85bad6af7128e05fd61a3",
+        "rev": "36524adc31566655f2f4d55ad6b875fb5c1a4083",
         "type": "github"
       },
       "original": {
@@ -169,11 +185,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711057137,
-        "narHash": "sha256-F0IHrufvqfI1RT0i4kK6XiPdCNT7mJ6Unh5S5W7/mIA=",
+        "lastModified": 1712093937,
+        "narHash": "sha256-BXmgNrvN2qi+heIX4NRIJ/HrJ4bhKTKTViZubyNICP4=",
         "owner": "jacekszymanski",
         "repo": "nixcasks",
-        "rev": "480b6fd50bdaad306ecbb962f070a1a25a80d3b3",
+        "rev": "e0175cd048835135453e7bb2cf1fd59223088469",
         "type": "github"
       },
       "original": {
@@ -213,11 +229,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1710806803,
-        "narHash": "sha256-qrxvLS888pNJFwJdK+hf1wpRCSQcqA6W5+Ox202NDa0=",
+        "lastModified": 1711703276,
+        "narHash": "sha256-iMUFArF0WCatKK6RzfUJknjem0H9m4KgorO/p3Dopkk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b06025f1533a1e07b6db3e75151caa155d1c7eb3",
+        "rev": "d8fe5e6c92d0d190646fb9f1056741a229980089",
         "type": "github"
       },
       "original": {
@@ -232,6 +248,7 @@
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
+        "homebrew-cask-fonts": "homebrew-cask-fonts",
         "homebrew-core": "homebrew-core",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",

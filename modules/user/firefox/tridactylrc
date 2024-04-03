@@ -3,6 +3,7 @@
 set editorcmd /Users/ray/Applications/Home\ Manager\ Apps/Alacritty.app/Contents/MacOS/alacritty -e /bin/zsh -lc 'nvim %f "+call cursor(%l, %c)"'
 set searchurls.docs https://docs.mongodb.com/search/?q=%s
 set searchurls.kf https://search.corp.mongodb.com/#q=%s&sort=relevancy
+set searchurls.nix https://mynixos.com/search?q=%s
 set smoothscroll true
 set configversion 2.0
 set update.lastchecktime 1707094156841

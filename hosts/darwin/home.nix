@@ -10,6 +10,7 @@
     ../../${args.userModulesPath}/mtools
     ../../${args.userModulesPath}/bat
     ../../${args.userModulesPath}/zoxide
+    ../../${args.userModulesPath}/lnav
     ../../${args.userModulesPath}/${args.mac.vkeyboard}
     ../../${args.userModulesPath}/${args.fuzzyFinder}
   ];
@@ -77,6 +78,7 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
+    MOZ_LEGACY_PROFILES = 1;
     # EDITOR = "nvim";
   };
 

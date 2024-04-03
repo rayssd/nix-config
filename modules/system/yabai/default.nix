@@ -4,17 +4,17 @@
   services.yabai = {
     enable = true;
     package = pkgs.yabai;
-    enableScriptingAddition = true;
+    enableScriptingAddition = false;
     config = {
       mouse_follows_focus="off";
       focus_follows_mouse="off";
       window_placement="second_child";
       window_topmost="off";
       window_shadow="on";
-      window_opacity="on";
+      window_opacity="off";
       #window_opacity_duration=0.0;
-      active_window_opacity=1.0;
-      normal_window_opacity=0.8;
+      # active_window_opacity=1.0;
+      # normal_window_opacity=0.8;
       # window_border="on";
       # window_border_width=1;
       # active_window_border_color="0xff4c79fe";
@@ -37,8 +37,8 @@
     };
 
     extraConfig = ''
-      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-      sudo yabai --load-sa
+      # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+      # sudo yabai --load-sa
 
       # ===== Rules ==================================
 
@@ -85,8 +85,11 @@
 
       # ===== External Bars ===========================
 
-      # add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
-      # yabai -m config external_bar all:30:0
+      # add 32 padding to the top or bottom of all spaces regardless of the display it belongs to
+      yabai -m config external_bar all:32:0
+
+      # Add borders to windows. colour format 0xAARRGGBB
+      borders active_color=0xffb4befe inactive_color=0x55b4befe width=5.0 hidpi=on blur_radius=5.0 &
     '';
   };
 }

@@ -30,7 +30,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-
+    homebrew-cask-fonts = {
+      url = "github:homebrew/homebrew-cask-fonts";
+      flake = false;
+    };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -111,8 +114,8 @@
             ./${args.hostsPath}/darwin/configuration.nix
             home-manager.darwinModules.home-manager
             ./${args.baseModulesPath}/home-manager
-            nix-homebrew.darwinModules.nix-homebrew
-            ./${args.baseModulesPath}/nix-homebrew
+            # nix-homebrew.darwinModules.nix-homebrew
+            # ./${args.baseModulesPath}/nix-homebrew
           ];
         }
       );

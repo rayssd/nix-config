@@ -20,17 +20,17 @@
       # fn - 8 : yabai -m space --focus 8 && yabai -m window --focus $(yabai -m query --windows --space | jq '.[-1].id')
       # fn - 9 : yabai -m space --focus 9 && yabai -m window --focus $(yabai -m query --windows --space | jq '.[-1].id')
 
-      fn - h : yabai -m space --focus prev && yabai -m window --focus prev
-      fn - l : yabai -m space --focus next && yabai -m window --focus next
-      fn - 1 : yabai -m space --focus 1 && yabai -m window --focus 1
-      fn - 2 : yabai -m space --focus 2 && yabai -m window --focus 2
-      fn - 3 : yabai -m space --focus 3 && yabai -m window --focus 3
-      fn - 4 : yabai -m space --focus 4 && yabai -m window --focus 4
-      fn - 5 : yabai -m space --focus 5 && yabai -m window --focus 5
-      fn - 6 : yabai -m space --focus 6 && yabai -m window --focus 6
-      fn - 7 : yabai -m space --focus 7 && yabai -m window --focus 7
-      fn - 8 : yabai -m space --focus 8 && yabai -m window --focus 8
-      fn - 9 : yabai -m space --focus 9 && yabai -m window --focus 9
+      # fn - h : yabai -m space --focus prev && yabai -m window --focus prev
+      # fn - l : yabai -m space --focus next && yabai -m window --focus next
+      # fn - 1 : yabai -m space --focus 1 && yabai -m window --focus 1
+      # fn - 2 : yabai -m space --focus 2 && yabai -m window --focus 2
+      # fn - 3 : yabai -m space --focus 3 && yabai -m window --focus 3
+      # fn - 4 : yabai -m space --focus 4 && yabai -m window --focus 4
+      # fn - 5 : yabai -m space --focus 5 && yabai -m window --focus 5
+      # fn - 6 : yabai -m space --focus 6 && yabai -m window --focus 6
+      # fn - 7 : yabai -m space --focus 7 && yabai -m window --focus 7
+      # fn - 8 : yabai -m space --focus 8 && yabai -m window --focus 8
+      # fn - 9 : yabai -m space --focus 9 && yabai -m window --focus 9
 
       # Focus windows
       fn - j : yabai -m window --focus prev
@@ -61,17 +61,29 @@
       fn - m                 : yabai -m window --toggle zoom-fullscreen
 
       # Move focus container to workspace
-      shift + fn - h : yabai -m window --space prev; yabai -m space --focus prev
-      shift + fn - l : yabai -m window --space next; yabai -m space --focus next
-      shift + fn - 1 : yabai -m window --space 1 && yabai -m space --focus 1
-      shift + fn - 2 : yabai -m window --space 2 && yabai -m space --focus 2
-      shift + fn - 3 : yabai -m window --space 3 && yabai -m space --focus 3
-      shift + fn - 4 : yabai -m window --space 4 && yabai -m space --focus 4
-      shift + fn - 5 : yabai -m window --space 5 && yabai -m space --focus 5
-      shift + fn - 6 : yabai -m window --space 6 && yabai -m space --focus 6
-      shift + fn - 7 : yabai -m window --space 7 && yabai -m space --focus 7
-      shift + fn - 8 : yabai -m window --space 8 && yabai -m space --focus 8
-      shift + fn - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+      # shift + fn - h : yabai -m window --space prev; yabai -m space --focus prev
+      # shift + fn - l : yabai -m window --space next; yabai -m space --focus next
+      # shift + fn - 1 : yabai -m window --space 1 && yabai -m space --focus 1
+      # shift + fn - 2 : yabai -m window --space 2 && yabai -m space --focus 2
+      # shift + fn - 3 : yabai -m window --space 3 && yabai -m space --focus 3
+      # shift + fn - 4 : yabai -m window --space 4 && yabai -m space --focus 4
+      # shift + fn - 5 : yabai -m window --space 5 && yabai -m space --focus 5
+      # shift + fn - 6 : yabai -m window --space 6 && yabai -m space --focus 6
+      # shift + fn - 7 : yabai -m window --space 7 && yabai -m space --focus 7
+      # shift + fn - 8 : yabai -m window --space 8 && yabai -m space --focus 8
+      # shift + fn - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+      shift + fn - h : yabai -m window --space prev
+      shift + fn - l : yabai -m window --space next
+      shift + fn - 1 : yabai -m window --space 1
+      shift + fn - 2 : yabai -m window --space 2
+      shift + fn - 3 : yabai -m window --space 3
+      shift + fn - 4 : yabai -m window --space 4
+      shift + fn - 5 : yabai -m window --space 5
+      shift + fn - 6 : yabai -m window --space 6
+      shift + fn - 7 : yabai -m window --space 7
+      shift + fn - 8 : yabai -m window --space 8
+      shift + fn - 9 : yabai -m window --space 9
+      shift + fn - 0 : yabai -m window --space 10
 
       # Resize windows
       ctrl + fn - h : yabai -m window --resize left:50:0 && yabai -m window --resize right:50:0

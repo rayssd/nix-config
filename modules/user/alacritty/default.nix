@@ -15,6 +15,8 @@
         opacity = 0.8;
         padding.x = 15;
         padding.y = 15;
+        dynamic_padding = true;
+        blur = true;
       };
       keyboard = {
         bindings = [

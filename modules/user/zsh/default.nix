@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 let
   myAliases = {
-    nrs = "sudo nixos-rebuild switch --flake ~/nix-config/#default";
-    drs = "nix update flake --flake ~/nix-config && darwin-rebuild switch --flake ~/nix-config/#intelMac";
-    hmsl = "home-manager switch --flake ~/nix-config/#loki";
-    hmsr = "home-manager switch --flake ~/nix-config/#ray";
+    nixup = "nix flake update ~/nix-config && darwin-rebuild switch --flake ~/nix-config/#$(nix eval --impure --raw --expr 'builtins.currentSystem')";
     ll = "eza -lh --color=always --group-directories-first";
     cat = "bat";
   };

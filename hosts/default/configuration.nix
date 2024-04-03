@@ -127,7 +127,6 @@ in
       unzip
       wireplumber
       wget
-      zoom-us
 
       # Language Servers
       deno
