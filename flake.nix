@@ -114,8 +114,8 @@
             ./${args.hostsPath}/darwin/configuration.nix
             home-manager.darwinModules.home-manager
             ./${args.baseModulesPath}/home-manager
-            # nix-homebrew.darwinModules.nix-homebrew
-            # ./${args.baseModulesPath}/nix-homebrew
+            nix-homebrew.darwinModules.nix-homebrew
+            ./${args.baseModulesPath}/nix-homebrew
           ];
         }
       );

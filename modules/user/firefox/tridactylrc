@@ -10,6 +10,8 @@ set update.lastchecktime 1707094156841
 
 " Binds
 unbind d
+unbind <C-6>
+unbind <C-S-6>
 bind x tabclose
 bind b fillcmdline taball
 

@@ -4,11 +4,11 @@
   nix-homebrew = {
     user = args.mac.user;
     enable = true;
-    taps = {
-      "homebrew/homebrew-core" = inputs.homebrew-core;
-      "homebrew/homebrew-cask" = inputs.homebrew-cask;
-      "homebrew/homebrew-cask-fonts" = inputs.homebrew-cask-fonts;
-      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+    taps = with inputs; {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-cask-fonts" = homebrew-cask-fonts;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
     };
     mutableTaps = false;
     autoMigrate = false;

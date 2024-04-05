@@ -33,12 +33,12 @@
       # fn - 9 : yabai -m space --focus 9 && yabai -m window --focus 9
 
       # Focus windows
-      fn - j : yabai -m window --focus prev
-      fn - k : yabai -m window --focus next
+      fn - u : yabai -m window --focus prev
+      fn - i : yabai -m window --focus next
 
       # Moving windows
-      shift + fn - j : yabai -m window --warp prev
-      shift + fn - k : yabai -m window --warp next
+      shift + fn - u : yabai -m window --warp prev
+      shift + fn - i : yabai -m window --warp next
 
       # Focus display
       fn - 0x2B : yabai -m display --focus west
@@ -72,8 +72,8 @@
       # shift + fn - 7 : yabai -m window --space 7 && yabai -m space --focus 7
       # shift + fn - 8 : yabai -m window --space 8 && yabai -m space --focus 8
       # shift + fn - 9 : yabai -m window --space 9 && yabai -m space --focus 9
-      shift + fn - h : yabai -m window --space prev
-      shift + fn - l : yabai -m window --space next
+      shift + fn - y : yabai -m window --space prev
+      shift + fn - o : yabai -m window --space next
       shift + fn - 1 : yabai -m window --space 1
       shift + fn - 2 : yabai -m window --space 2
       shift + fn - 3 : yabai -m window --space 3
@@ -86,10 +86,10 @@
       shift + fn - 0 : yabai -m window --space 10
 
       # Resize windows
-      ctrl + fn - h : yabai -m window --resize left:50:0 && yabai -m window --resize right:50:0
-      ctrl + fn - j : yabai -m window --resize bottom:0:50 && yabai -m window --resize top:0:50
-      ctrl + fn - k : yabai -m window --resize top:0:-50 && yabai -m window --resize bottom:0:-50
-      ctrl + fn - l : yabai -m window --resize right:-50:0 && yabai -m window --resize left:-50:0
+      ctrl + fn - y : yabai -m window --resize left:50:0 && yabai -m window --resize right:50:0
+      ctrl + fn - u : yabai -m window --resize bottom:0:50 && yabai -m window --resize top:0:50
+      ctrl + fn - i : yabai -m window --resize top:0:-50 && yabai -m window --resize bottom:0:-50
+      ctrl + fn - o : yabai -m window --resize right:-50:0 && yabai -m window --resize left:-50:0
 
       # Equalize size of windows
       fn - b : yabai -m space --balance
@@ -106,10 +106,10 @@
       shift + fn - y : yabai -m space --mirror y-axis
 
       # Set insertion point for focused container
-      shift + ctrl + fn - h : yabai -m window --insert west
-      shift + ctrl + fn - j : yabai -m window --insert south
-      shift + ctrl + fn - k : yabai -m window --insert north
-      shift + ctrl + fn - l : yabai -m window --insert east
+      shift + ctrl + fn - y : yabai -m window --insert west
+      shift + ctrl + fn - u : yabai -m window --insert south
+      shift + ctrl + fn - i : yabai -m window --insert north
+      shift + ctrl + fn - o : yabai -m window --insert east
 
 
       # Restart Yabai

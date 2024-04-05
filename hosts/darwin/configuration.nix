@@ -61,8 +61,8 @@
     settings.experimental-features = "nix-command flakes";
     gc = {
       automatic = true;
-      interval = { Weekday = 7; Hour = 0; Minute = 0; };
-      options = "--delete-older-than 30d";
+      interval = { Weekday = 0; Hour = 5; Minute = 0; };
+      options = "--delete-older-than 15d";
     };
   };
 
@@ -134,16 +134,17 @@
 
     };
 
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
+    # Doesn't seem to have any effect with Karabiner installed
+    # keyboard = {
+    #   enableKeyMapping = true;
+    #   remapCapsLockToEscape = true;
+    # };
 
 
   };
 
   homebrew = {
-    enable = false;
+    enable = true;
     onActivation = {
       cleanup = "uninstall";
       autoUpdate = true;
@@ -156,7 +157,7 @@
       "hiddenbar"
       "maccy"
       "scroll-reverser"
-      "stats"
+      # "stats"
       "wireshark"
       "microsoft-teams"
       "gpg-suite-no-mail"
@@ -164,6 +165,7 @@
       "homebrew/cask-fonts/font-sf-mono"
       "homebrew/cask-fonts/font-sf-pro"
       "sf-symbols"
+      # "obsidian"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

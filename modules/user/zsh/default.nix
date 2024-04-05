@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   myAliases = {
-    nixup = "nix flake update ~/nix-config && darwin-rebuild switch --flake ~/nix-config/#$(nix eval --impure --raw --expr 'builtins.currentSystem')";
+    nixup = "nix flake update ~/nix-config && sleep 2 && darwin-rebuild switch --flake ~/nix-config/#$(nix eval --impure --raw --expr 'builtins.currentSystem')";
     ll = "eza -lh --color=always --group-directories-first";
     cat = "bat";
   };
