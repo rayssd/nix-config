@@ -17,7 +17,7 @@
     ];
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [
-      coreutils
+      # coreutils
       btop
       lua5_4
       dprint

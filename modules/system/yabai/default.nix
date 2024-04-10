@@ -69,9 +69,11 @@
 
       # App placement rules
       yabai -m rule --add label="Firefox" app="^Firefox$" title=".*" space=1
+      yabai -m rule --add label="Alacritty" app="^Alacritty$" title=".*" space=2
+      yabai -m rule --add label="Obsidian" app="^Obsidian$" title=".*" space=3
       yabai -m rule --add label="Slack" app="^Slack$" title=".*" space=4
-      yabai -m rule --add label="Support Hub" app="^Support Hub$" title=".*" space=7
       yabai -m rule --add label="t2" app="^t2$" title=".*" space=5
+      yabai -m rule --add label="Support Hub" app="^Support Hub$" title=".*" space=7
 
       # ===== Signals =================================
 

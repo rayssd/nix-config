@@ -20,6 +20,30 @@ in
       }
     ];
     initExtra = ''
+      ex ()
+      {
+        if [ -f $1 ] ; then
+          filename=$(echo "$1" | awk -F '.' '{print $1}')
+
+          case $1 in
+            *.tar.bz2)   tar xjf $1 --directy="$filename";;
+            *.tar.gz)    tar xzf $1 --directy="$filename";;
+            *.bz2)       bunzip2 $1   ;;
+            *.rar)       unrar x $1   ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1 --directy="$filename";;
+            *.tbz2)      tar xjf $1 --directy="$filename";;
+            *.tgz)       tar xzf $1 --directy="$filename";;
+            *.zip)       unzip "$1" -d "$filename"     ;;
+            *.Z)         uncompress $1;;
+            *.7z)        7z x $1      ;;
+            *)           echo "'$1' cannot be extracted via ex()" ;;
+          esac
+        else
+          echo "'$1' is not a valid file"
+        fi
+      }
+
       # preserves zsh command history across tmux windows
       setopt inc_append_history
       setopt share_history

@@ -3,6 +3,6 @@
 {
   services.sketchybar = {
     enable = true;
-    # config = builtins.readFile ~/.config/sketchybar/sketchybarrc; 
+    # config = builtins.readFile ./config/sketchybarrc; 
   };
 }

@@ -116,7 +116,8 @@
       shift + ctrl + fn - r : \
           /usr/bin/env osascript <<< \
               "display notification \"Restarting Yabai\" with title \"Yabai\""; \
-          launchctl kickstart -k "gui/''${UID}/org.nixos.yabai"
+          launchctl kickstart -k "gui/''${UID}/org.nixos.yabai" && \
+          yabai -m rule --apply
     '';
   };
 }

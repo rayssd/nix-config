@@ -13,6 +13,7 @@
     ../../${args.userModulesPath}/lnav
     ../../${args.userModulesPath}/${args.mac.vkeyboard}
     ../../${args.userModulesPath}/${args.fuzzyFinder}
+    ../../${args.userModulesPath}/${args.mac.bar}
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

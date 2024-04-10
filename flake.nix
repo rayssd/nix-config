@@ -60,6 +60,7 @@
           wm = "yabai";
           keymapper = "skhd";
           vkeyboard = "karabiner-elements";
+          bar = "sketchybar";
         };
         linux = {
           user = "loki";
