@@ -37,6 +37,7 @@
     nixcasks.webcatalog
     # nixcasks.slack
     nixcasks.flameshot
+    nixcasks.android-file-transfer
     nixcasks.vlc
     nixcasks.superproductivity
     raycast
@@ -81,7 +82,7 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    MOZ_LEGACY_PROFILES = 1;
+    # MOZ_LEGACY_PROFILES = 1; #useless :(
     # EDITOR = "nvim";
   };
 

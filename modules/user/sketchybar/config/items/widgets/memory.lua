@@ -13,7 +13,7 @@ local memory = sbar.add("item", "widgets.memory", {
     color = colors.lavender,
   },
   label = { font = { family = settings.font.numbers, } },
-  update_freq = 1
+  update_freq = 30
 })
 
 memory:subscribe({"routine"}, function()

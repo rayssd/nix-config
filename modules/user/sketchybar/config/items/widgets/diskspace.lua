@@ -22,7 +22,6 @@ local disk = sbar.add("item", "widgets.disk", {
 --   position = "right",
 --   label = { font = { family = settings.font.numbers }},
 --   -- y_offset = -4,
---   update_freq = 1
 -- })
 
 -- sbar.exec("df | head -2 | tail -1 | awk '{print $5}'", function(percent)

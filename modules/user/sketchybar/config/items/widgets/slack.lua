@@ -20,7 +20,7 @@ local slack = sbar.add("item", "widgets.slack", {
     drawing = false,
     color = colors.rosewater
   },
-  update_freq = 1
+  update_freq = 5
 })
 
 slack:subscribe({"routine"}, function()

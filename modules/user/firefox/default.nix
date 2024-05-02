@@ -3,11 +3,9 @@
 {
   #########################################################################
   # To fix Firefox hanging at first starup on a new installation
-  # 1. Start firefox with a clean profile. ie: no profiles definition below
-  # 2. Delete profiles.ini
-  # 3. Rebuild nix config with profiles setting enabled
-  # 4. Modify installs.ini to point to the default profile
-  # 5. Restart firefox
+  # 1. Start Firefox, it will likely hang. Force quit it.
+  # 2. Open installs.ini, copy the installation ID of the new profile, overwrite the installation ID for the default profile
+  # 3. Restart firefox
   #########################################################################
   imports = [ ../tridactyl-native ];
   programs.firefox = {
@@ -44,7 +42,7 @@
             };
 
             "MongoDB Docs" = {
-              urls = [{ template = "https://www.mongodb.com/docs/search?q={searchTerms}"; }];
+              urls = [{ template = "https://www.mongodb.com/docs/search/?q={searchTerms}"; }];
               definedAliases = [ "docs" ];
             };
 

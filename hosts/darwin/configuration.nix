@@ -29,7 +29,7 @@
       gh
       jq
       lnav
-      nodejs_21
+      nodejs-slim_22
       mongosh
       ollama
       ripgrep
@@ -58,10 +58,13 @@
 
   # Necessary for using flakes on this system.
   nix = {
-    settings.experimental-features = "nix-command flakes";
+    settings = {
+      experimental-features = "nix-command flakes";
+      extra-nix-path = "nixpkgs=flake:nixpkgs";
+    };
     gc = {
       automatic = true;
-      interval = { Weekday = 0; Hour = 5; Minute = 0; };
+      interval = { Weekday = 0; Hour = 2; Minute = 0; };
       options = "--delete-older-than 15d";
     };
   };
@@ -154,10 +157,8 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      "hiddenbar"
       "maccy"
       "scroll-reverser"
-      # "stats"
       "wireshark"
       "microsoft-teams"
       "gpg-suite-no-mail"
@@ -165,7 +166,6 @@
       "homebrew/cask-fonts/font-sf-mono"
       "homebrew/cask-fonts/font-sf-pro"
       "sf-symbols"
-      # "obsidian"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

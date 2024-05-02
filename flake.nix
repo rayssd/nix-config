@@ -11,6 +11,7 @@
 
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
+      # url = "github:wegank/nix-darwin/mddoc-remove";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

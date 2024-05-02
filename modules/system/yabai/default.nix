@@ -12,13 +12,10 @@
       window_topmost="off";
       window_shadow="on";
       window_opacity="off";
-      #window_opacity_duration=0.0;
+      # window_opacity_duration=0.0;
       # active_window_opacity=1.0;
       # normal_window_opacity=0.8;
-      # window_border="on";
-      # window_border_width=1;
-      # active_window_border_color="0xff4c79fe";
-      # normal_window_border_color="0xff555555";
+      # menubar_opacity=0.0;
       insert_feedback_color="0xffd75f5f";
       split_ratio=0.50;
       auto_balance="off";
@@ -69,7 +66,6 @@
 
       # App placement rules
       yabai -m rule --add label="Firefox" app="^Firefox$" title=".*" space=1
-      yabai -m rule --add label="Alacritty" app="^Alacritty$" title=".*" space=2
       yabai -m rule --add label="Obsidian" app="^Obsidian$" title=".*" space=3
       yabai -m rule --add label="Slack" app="^Slack$" title=".*" space=4
       yabai -m rule --add label="t2" app="^t2$" title=".*" space=5
@@ -89,6 +85,9 @@
 
       # add 32 padding to the top or bottom of all spaces regardless of the display it belongs to
       yabai -m config external_bar all:32:0
+
+      # For rules to apply to windows that are already opened before yabai is launched or this rule is added
+      yabai -m rule --apply
 
       # Add borders to windows. colour format 0xAARRGGBB
       borders active_color=0xffb4befe inactive_color=0x55b4befe width=5.0 hidpi=on blur_radius=5.0 &
