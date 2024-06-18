@@ -14,6 +14,7 @@
     loginShell = pkgs.zsh;
     systemPath = [
       "~/.local/bin"
+      "/opt/homebrew/bin"
     ];
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [
@@ -30,6 +31,7 @@
       jq
       lnav
       nodejs-slim_22
+      nix-output-monitor
       mongosh
       ollama
       ripgrep
@@ -157,7 +159,7 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      "maccy"
+      # "maccy"
       "scroll-reverser"
       "wireshark"
       "microsoft-teams"
@@ -165,7 +167,11 @@
       "megasync"
       "homebrew/cask-fonts/font-sf-mono"
       "homebrew/cask-fonts/font-sf-pro"
+      # "nikitabobko/tap/aerospace"
       "sf-symbols"
+      # "raycast"
+      "webex"
+      "anytype"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

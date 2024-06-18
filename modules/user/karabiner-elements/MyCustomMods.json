@@ -92,11 +92,11 @@
       ]
     },
     {
-      "description": "Fn+Space to Shift+Command+x (Keychron K8)",
+      "description": "Fn+Space (Mic button) to Shift+Command+a (Keychron K8)",
       "manipulators": [
         {
           "from": { "key_code": "spacebar", "modifiers": { "mandatory": ["fn"] } },
-          "to": [{ "key_code": "x", "modifiers": ["shift", "command"] }],
+          "to": [{ "key_code": "a", "modifiers": ["shift", "command"] }],
           "type": "basic"
         }
       ]

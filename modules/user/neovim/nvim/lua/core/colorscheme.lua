@@ -75,8 +75,6 @@ vim.cmd("autocmd VimEnter * hi LineNr guibg=NONE guifg=#6c7086")
 
 vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
 
--- set colorscheme with protected call
--- in case it isn't installed
 local status, _ = pcall(vim.cmd, "colorscheme catppuccin")
 if not status then
   print("Colorscheme not found!") -- print error if colorscheme not installed

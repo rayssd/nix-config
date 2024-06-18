@@ -18,12 +18,12 @@ return {
     end,
   },
 
-  { "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      require("lazy-configs.autopairs")
-    end,
-  },
+  -- { "windwp/nvim-autopairs",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("lazy-configs.autopairs")
+  --   end,
+  -- },
 
   --dap
 
@@ -53,10 +53,21 @@ return {
   "nvim-lualine/lualine.nvim",
 
   -- essential plugins
-  "tpope/vim-surround", -- add, delete, change surroundings (it's awesome)
+  -- "tpope/vim-surround", -- add, delete, change surroundings (it's awesome)
+  --
+  -- {
+  --   "kylechui/nvim-surround",
+  --   version = "*", -- Use for stability; omit to use `main` branch for the latest features
+  --   event = "VeryLazy",
+  --   config = function()
+  --       require("nvim-surround").setup({
+  --           -- Configuration here, or leave empty to use defaults
+  --       })
+  --   end
+  -- },
 
   -- commenting with gc
-  "numToStr/Comment.nvim",
+  -- "numToStr/Comment.nvim",
 
   -- Vimwiki
   {"vimwiki/vimwiki", keys={'<Leader>ww'}},
@@ -71,7 +82,7 @@ return {
   -- "p00f/nvim-ts-rainbow")
 
   -- highlight unmatched brackets
-  "vim-scripts/Highlight-UnMatched-Brackets",
+  -- "vim-scripts/Highlight-UnMatched-Brackets",
 
   -- file explorer
   -- { "nvim-tree/nvim-tree.lua",

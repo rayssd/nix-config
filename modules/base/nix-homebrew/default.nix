@@ -9,6 +9,7 @@
       "homebrew/homebrew-cask" = homebrew-cask;
       "homebrew/homebrew-cask-fonts" = homebrew-cask-fonts;
       "homebrew/homebrew-bundle" = homebrew-bundle;
+      "nikitabobko/homebrew-tap" = homebrew-aerospace;
     };
     mutableTaps = false;
     autoMigrate = false;

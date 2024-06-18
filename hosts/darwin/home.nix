@@ -35,7 +35,6 @@
     nixcasks.obsidian
     nixcasks.vscodium
     nixcasks.webcatalog
-    # nixcasks.slack
     nixcasks.flameshot
     nixcasks.android-file-transfer
     nixcasks.vlc

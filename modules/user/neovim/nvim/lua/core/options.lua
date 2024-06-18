@@ -52,9 +52,13 @@ opt.signcolumn = 'yes'
 
 -- file type detection for case comments
 vim.filetype.add({
-  pattern = {
-    ['/private/var/folders/.*'] = 'markdown',
-}})
+  -- pattern = {
+  --    ['/private/var/folders/.*'] = 'markdown',
+  -- },
+  extension = {
+    txt = "markdown"
+  }
+})
 
 -- enable spell checking for markdown filetype
 vim.cmd("autocmd FileType markdown setlocal spell spelllang=en_au")

@@ -33,6 +33,7 @@ require('lspconfig').lua_ls.setup{
 }
 
 require('lspconfig').nil_ls.setup{}
+require('lspconfig').marksman.setup{}
 
 --
 -- lsp.configure('denols', {
