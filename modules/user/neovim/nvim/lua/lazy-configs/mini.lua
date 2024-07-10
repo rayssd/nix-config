@@ -3,7 +3,7 @@ require('mini.animate').setup()
 require('mini.bracketed').setup()
 require('mini.comment').setup()
 require('mini.files').setup()
-require('mini.pairs').setup()
+-- require('mini.pairs').setup()
 require('mini.surround').setup({
   -- vim-surround style mappings
   -- left brackets add space around the text object

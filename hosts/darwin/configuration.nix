@@ -36,6 +36,7 @@
       ollama
       ripgrep
       tealdeer
+      unrar
 
       # LSPs
       deno

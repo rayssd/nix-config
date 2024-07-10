@@ -18,12 +18,12 @@ return {
     end,
   },
 
-  -- { "windwp/nvim-autopairs",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("lazy-configs.autopairs")
-  --   end,
-  -- },
+  { "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("lazy-configs.autopairs")
+    end,
+  },
 
   --dap
 
