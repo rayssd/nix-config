@@ -4,8 +4,12 @@
   #########################################################################
   # To fix Firefox hanging at first starup on a new installation
   # 1. Start Firefox, it will likely hang. Force quit it.
-  # 2. Open installs.ini, copy the installation ID of the new profile, overwrite the installation ID for the default profile
-  # 3. Restart firefox
+  # 2. Open installs.ini, copy the installation ID of the new profile, 
+  # 3. chmod 775 profiles.ini, include the installation ID in profiles.ini as follows:
+  # [Install50557941509BD18A]
+  # Default=Profiles/default
+  # Locked=1
+  # 4. Restart firefox
   #########################################################################
   imports = [ ../tridactyl-native ];
   programs.firefox = {

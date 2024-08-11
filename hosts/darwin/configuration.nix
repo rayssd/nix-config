@@ -33,7 +33,6 @@
       nodejs-slim_22
       nix-output-monitor
       mongosh
-      ollama
       ripgrep
       tealdeer
       unrar

@@ -1,6 +1,17 @@
 { config, pkgs, ... }:
 let
-  treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+  # treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+  treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+        p.c
+        p.lua
+        p.nix
+        p.bash
+        p.cpp
+        p.json
+        p.javascript
+        p.python
+        p.markdown
+  ]);
 in
 {
   programs.neovim = {
