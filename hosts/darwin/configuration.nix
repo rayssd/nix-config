@@ -11,7 +11,8 @@
   ];
   environment = {
     shells = with pkgs; [ bash zsh ];
-    loginShell = pkgs.zsh;
+    # loginShell throws error as of 05-Nov-2024
+    # loginShell = pkgs.zsh;
     systemPath = [
       "~/.local/bin"
       "/opt/homebrew/bin"
@@ -36,6 +37,7 @@
       ripgrep
       tealdeer
       unrar
+      pipx
 
       # LSPs
       deno
@@ -43,7 +45,7 @@
       marksman
       nil
       rustup
-      python311Packages.python-lsp-server
+      # python311Packages.python-lsp-server
     ];
   };
 
@@ -172,6 +174,7 @@
       # "raycast"
       "webex"
       "anytype"
+      # "karabiner-elements"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

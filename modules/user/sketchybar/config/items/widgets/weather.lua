@@ -8,7 +8,11 @@ local weather = sbar.add("item", "widgets.weather", {
 
 weather:subscribe({"routine", "power_source_change", "system_woke"}, function()
   sbar.exec("curl -s 'https://wttr.in/Sydney,Australia?format=2'", function(output)
-    weather:set({ label = { string = output }})
+    if string.len(output) < 50 then
+      weather:set({ label = { string = output }})
+    else
+      weather:set({ label = { string = "No weather report :(" }})
+    end
   end)
 end)
 

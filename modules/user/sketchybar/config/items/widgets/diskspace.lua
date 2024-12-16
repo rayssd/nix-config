@@ -29,7 +29,7 @@ local disk = sbar.add("item", "widgets.disk", {
 -- end)
 
 disk:subscribe({"routine", "power_source_change", "system_woke"}, function()
-  sbar.exec("df /dev/disk3s* | head -2 | tail -1 | awk '{print (1-$4/$2)*100}'", function(percent)
+  sbar.exec("df | grep /System/Volumes/Data | grep -v /System/Volumes/Data/ | awk '{print (1-$4/$2)*100}'", function(percent)
     disk:set({ label = { string = math.floor(percent) .. "%" }})
   end)
 end)

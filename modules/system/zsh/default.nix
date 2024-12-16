@@ -32,11 +32,12 @@
 
       ex () {
         if [ -f $1 ] ; then
-          filename=$(echo "$1" | awk -F '.' '{print $1}')
+          filename=$(echo "$1" | awk -F '.' 'sub(FS $NF,x)')
 
           case $1 in
             *.tar.bz2)   mkdir "$filename" && tar xjf $1 --directory="$filename";;
             *.tar.gz)    mkdir "$filename" && tar xzf $1 --directory="$filename";;
+            *.Z)    mkdir "$filename" && tar xzf $1 --directory="$filename";;
             *.bz2)       bunzip2 $1   ;;
             *.rar)       unrar x $1   ;;
             *.gz)        gunzip $1    ;;

@@ -31,7 +31,8 @@ treesitter.setup({
     "rust",
     "c",
     "cpp",
-    "gitignore"
+    "gitignore",
+    "nix"
   },
   -- auto install above language parsers
   auto_install = true,

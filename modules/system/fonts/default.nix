@@ -6,7 +6,7 @@
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk
-      noto-fonts-emoji
+    # noto-fonts-emoji
       font-awesome
       fira-code
       fira-code-symbols

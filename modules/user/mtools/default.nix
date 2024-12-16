@@ -7,7 +7,6 @@ let
       version = "1.7.2";
       src = fetchPypi {
         inherit pname version;
-        # sha256 = "sha256-0aozmQ4Eb5zL4rtNHSFjEynfObUkYlid1PgMDVmRkwY";
         sha256 = "sha256-zhlb7++Fo6punlHY3B0TARuICSQPWRTYFVBq25RWrLw=";
       };
 
