@@ -22,7 +22,7 @@
         isDefault = true;
         userChrome = builtins.readFile ./userChrome.css;
         search = {
-          default = "Whoogle";
+          default = "DuckDuckGo";
           force = true;
           engines = {
             "Nix Packages" = {

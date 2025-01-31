@@ -4,7 +4,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      env.TERM = "alacritty";
+      # env.TERM = "alacritty";
       font = {
         size = 18;
         normal.family = "FiraCode Nerd Font";

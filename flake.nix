@@ -3,17 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       # url = "github:wegank/nix-darwin/mddoc-remove";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixcasks = {
@@ -46,7 +46,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-darwin, nix-homebrew, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, nix-homebrew, ... }@inputs:
     let
       MacOSVersion = "sonoma";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -63,7 +63,7 @@
         hostsPath = "hosts";
         mac = {
           user = "ray";
-          wm = "yabai";
+          wm = "aerospace";
           keymapper = "skhd";
           vkeyboard = "karabiner-elements";
           bar = "sketchybar";
@@ -100,7 +100,7 @@
         }
       );
 
-      darwinConfigurations = nixpkgs-stable.lib.genAttrs darwinSystems (system:
+      darwinConfigurations = nixpkgs.lib.genAttrs darwinSystems (system:
         nix-darwin.lib.darwinSystem {
           inherit system;
           specialArgs = rec { 
@@ -109,7 +109,7 @@
               inherit pkgs nixpkgs;
               osVersion = MacOSVersion;
             };
-            pkgs = import nixpkgs-stable {
+            pkgs = import nixpkgs {
               inherit system;
               config.allowUnfree = true;
               config.packageOverrides = prev: {

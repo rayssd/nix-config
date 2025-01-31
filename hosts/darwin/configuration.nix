@@ -3,9 +3,9 @@
 {
   imports = [
     ../../${args.systemModulesPath}/${args.shell}
-    ../../${args.systemModulesPath}/${args.mac.wm}
-    ../../${args.systemModulesPath}/${args.mac.keymapper}
-    ../../${args.systemModulesPath}/${args.mac.vkeyboard}
+# ../../${args.systemModulesPath}/${args.mac.wm}
+# ../../${args.systemModulesPath}/${args.mac.keymapper}
+# ../../${args.systemModulesPath}/${args.mac.vkeyboard}
     ../../${args.systemModulesPath}/fonts
     ../../${args.systemModulesPath}/sketchybar
   ];
@@ -50,8 +50,9 @@
   };
 
   users.users.${args.mac.user} = {
-    name = args.mac.user;
-    home = "/Users/${args.mac.user}";
+      name = args.mac.user;
+      home = "/Users/${args.mac.user}";
+      shell = pkgs.zsh;
   };
 
   # Auto upgrade nix package and the daemon service.
@@ -161,7 +162,6 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      # "maccy"
       "scroll-reverser"
       "wireshark"
       "microsoft-teams"
@@ -169,12 +169,11 @@
       "megasync"
       "homebrew/cask-fonts/font-sf-mono"
       "homebrew/cask-fonts/font-sf-pro"
-      # "nikitabobko/tap/aerospace"
+      "nikitabobko/tap/aerospace"
       "sf-symbols"
-      # "raycast"
       "webex"
       "anytype"
-      # "karabiner-elements"
+      "karabiner-elements"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];

@@ -14,6 +14,7 @@
     ../../${args.userModulesPath}/${args.mac.vkeyboard}
     ../../${args.userModulesPath}/${args.fuzzyFinder}
     ../../${args.userModulesPath}/${args.mac.bar}
+    ../../${args.userModulesPath}/${args.mac.wm}
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -25,7 +26,7 @@
   nix.gc = {
     automatic = true;
     frequency = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 15d";
   };
 
   # The home.packages option allows you to install Nix packages into your
