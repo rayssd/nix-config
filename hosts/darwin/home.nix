@@ -5,7 +5,7 @@
     ../../${args.userModulesPath}/${args.terminal}
     ../../${args.userModulesPath}/${args.editor}
     ../../${args.userModulesPath}/${args.shell}
-    ../../${args.userModulesPath}/${args.browser}
+  # ../../${args.userModulesPath}/${args.browser}
     ../../${args.userModulesPath}/${args.multiplexer}
   # ../../${args.userModulesPath}/mtools
     ../../${args.userModulesPath}/bat
@@ -40,8 +40,9 @@
     nixcasks.android-file-transfer
     nixcasks.vlc
     # nixcasks.superproductivity
-    nixcasks.firefox
+    # nixcasks.firefox
     nixcasks.omnidisksweeper
+    nixcasks.zen
     raycast
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

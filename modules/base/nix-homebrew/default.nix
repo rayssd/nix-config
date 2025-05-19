@@ -10,6 +10,7 @@
       "homebrew/homebrew-cask-fonts" = homebrew-cask-fonts;
       "homebrew/homebrew-bundle" = homebrew-bundle;
       "nikitabobko/homebrew-tap" = homebrew-aerospace;
+      "nhymxu/homebrew-tap" = homebrew-battery-toolkit;
     };
     mutableTaps = false;
     autoMigrate = false;

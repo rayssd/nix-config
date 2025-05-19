@@ -44,6 +44,10 @@
       url = "github:nikitabobko/homebrew-tap";
       flake = false;
     };
+    homebrew-battery-toolkit = {
+      url = "github:nhymxu/homebrew-tap";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, nix-homebrew, ... }@inputs:

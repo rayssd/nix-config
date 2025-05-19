@@ -22,7 +22,7 @@
       # coreutils
       btop
       lua5_4
-      dprint
+      dprint # failed to build on 20-Feb-2025
       eza
       exercism
       jankyborders
@@ -38,6 +38,7 @@
       tealdeer
       unrar
       pipx
+      inetutils
 
       # LSPs
       deno
@@ -56,13 +57,15 @@
   };
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true; # Disabled as of 20-Feb-2025, nix.enable is enough
   # nix.package = pkgs.nix;
 
-  security.pam.enableSudoTouchIdAuth = true;
+  # security.pam.enableSudoTouchIdAuth = true; removed 27-Feb-2025
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Necessary for using flakes on this system.
   nix = {
+    enable = true;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
@@ -172,8 +175,8 @@
       "nikitabobko/tap/aerospace"
       "sf-symbols"
       "webex"
-      "anytype"
       "karabiner-elements"
+      "nhymxu/tap/battery-toolkit"
     ];
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [ ];
